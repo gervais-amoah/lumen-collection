@@ -29,8 +29,6 @@ export async function semanticSearch(
       throw error;
     }
 
-    // remove
-
     console.log(`Found ${products?.length || 0} products`);
     return products || [];
   } catch (error) {

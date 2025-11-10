@@ -344,3 +344,35 @@ Would you like me to now deliver:
 3. Or the **Next.js page structure**?
 
 Just say which one — and I’ll give it to you ready to run.
+
+# How results look like:
+
+## products from semantic search
+
+```js
+mockSemanticSearchResult = {
+  assistant_response: "Do you see anything you like?",
+  query_text: "red dress for wedding",
+  products: [
+    {
+      id: "dress-001",
+      category: "clothing",
+      type: "dress",
+      name: "Evelyn Silk Wrap Dress",
+      brand: "Luna & Co.",
+      price: 89,
+      color: ["burgundy", "navy", "black"],
+      size: ["S", "M", "L", "XL"],
+      style: ["formal", "elegant", "evening"],
+      material: "silk blend",
+      occasion: ["wedding", "dinner", "event"],
+      description:
+        "A flowing silk wrap dress with a flattering V-neckline, perfect for weddings or dinner dates.",
+      image_url: "/images/placeholder.jpg",
+      similarity: 0.501656651496887,
+    },
+    // {...},
+  ],
+  cache_hit: false,
+};
+```

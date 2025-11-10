@@ -15,6 +15,17 @@ export interface Product {
   similarity?: number; // Added by vector search
 }
 
+export interface OptimizedProduct {
+  id: string;
+  name: string;
+  price: number;
+  color: string[];
+  style: string[];
+  material: string;
+  occasion: string[];
+  description: string;
+}
+
 export interface CachedResults {
   products: Product[];
   timestamp: number;
