@@ -1,6 +1,7 @@
 // app/api/converse/route.ts
 import { NextRequest } from "next/server";
 import { createClient } from "@supabase/supabase-js";
+import { getLumenResponse } from "@/lib/gemini";
 
 // Initialize Supabase client
 const supabase = createClient(
@@ -10,26 +11,27 @@ const supabase = createClient(
 
 export async function POST(req: NextRequest) {
   try {
-    // Test: Fetch total product count
-    const { count, error } = await supabase
-      .from("products")
-      .select("*", { count: "exact", head: true });
+    const { message, history } = await req.json();
 
-    if (error) throw new Error(error.message);
+    // Get Gemini response
+    const { assistant_response, query_text } = await getLumenResponse(
+      message,
+      history
+    );
 
+    // For now: just return Gemini response without search
     return Response.json({
-      success: true,
-      message: `Connected to Supabase! Found ${count} products.`,
-      timestamp: new Date().toISOString(),
+      assistant_response,
+      query_text,
+      products: [], // No search yet
+      cache_hit: false,
     });
   } catch (error) {
-    console.error("Connection Error:", error);
-    return Response.json(
-      {
-        success: false,
-        error: (error as Error).message,
-      },
-      { status: 500 }
-    );
+    console.error("API Error:", error);
+    return Response.json({
+      assistant_response: "One moment — checking our inventory...",
+      products: [],
+      error: true,
+    });
   }
 }

@@ -1,12 +1,10 @@
-Absolutely. Here's the **complete, developer-ready specification** for your **AI Shop Assistant MVP**, optimized for submission to the **Block Builder Fellowship**.
-
-This document covers everything a developer needs to begin implementation immediately — clean, concise, and production-minded.
-
----
-
 # 🧩 AI Shop Assistant MVP Specification
 
 _For Block Builder Fellowship Submission_
+
+## Your role
+
+You are my coding assistant, with full-stack software development skills. You have a staff level of experience, and very proficient in AI system development too. You will help build the MVP of a web app. Keep your answers concise. If you use an external package, state it so I know I have to install it. For files (or code snippets), indicate the full path to them. Use best practice and production ready structure (even if this is just a MVP, it shall still be clean and professional).
 
 ## 1. Project Overview
 
@@ -58,7 +56,7 @@ name TEXT
 brand TEXT
 price INTEGER -- in cents (e.g., $89 = 8900), but use dollars for MVP simplicity
 color TEXT[]
-size TEXT[] OR INTEGER[] -- e.g., ['S','M'] or [6,7,8]
+size TEXT[] -- e.g., ['S','M'] or ["6","7","8"]
 style TEXT[] -- ['formal', 'casual']
 material TEXT
 occasion TEXT[] -- optional
@@ -123,6 +121,7 @@ All logic flows through **one backend endpoint**: `/api/converse`.
       "image_url": "/images/dress-001.jpg",
       "description": "A flowing silk wrap dress..."
     }
+    // {...}
   ],
   "cache_hit": true
 }
@@ -148,23 +147,7 @@ If no match:
 
 ### Step 2: Gemini Intent Refinement
 
-Prompt:
-
-```text
-You are Ava, a friendly boutique shopping assistant. Be warm, helpful, and ask one question at a time if needed.
-
-Available categories: clothing (dresses, jackets, shirts), accessories (handbags, hats, belts), footwear (shoes, boots, sneakers).
-
-Attributes: color, size, style (casual/formal), material, occasion.
-
-USER MESSAGE: "{message}"
-
-Respond in JSON:
-{
-  "assistant_response": "Your reply here",
-  "query_text": "structured natural language query (e.g., 'red formal dress for wedding'), or empty if vague"
-}
-```
+Prompt: Will define it later
 
 Example outputs:
 
@@ -263,6 +246,10 @@ Avoids redundant embedding/vector DB calls.
 
 ---
 
+If you understand your role, answer with a todo list and I will tell you what to do.
+
+# These are for me (Gev)
+
 ## 10. Data Setup Plan
 
 ### Step 1: Create Dummy Products (25 total)
@@ -272,8 +259,6 @@ Avoids redundant embedding/vector DB calls.
 - 7 footwear (shoes, boots, sneakers)
 
 ---
-
-## These are for me (Gev)
 
 ### Step 2: Generate Embeddings (Google Colab)
 
