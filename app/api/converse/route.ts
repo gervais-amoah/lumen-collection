@@ -11,11 +11,14 @@ export async function POST(req: NextRequest) {
   try {
     // TODO: For more context, we could receive the previous suggestions products shown
     const {
-      message,
+      userMessage,
       previousQueryText,
       history,
-    }: { message: string; previousQueryText: string; history: ChatHistory[] } =
-      await req.json();
+    }: {
+      userMessage: string;
+      previousQueryText: string;
+      history: ChatHistory[];
+    } = await req.json();
 
     // if history is too long, end conversation nicely, and asking user to consider current products or start a new search a bit later
     const endConversation = history.length >= 10;
@@ -35,7 +38,7 @@ export async function POST(req: NextRequest) {
 
     // Step 1: Get Gemini response with intent analysis
     const { assistant_response, query_text } = await getSearchIntent(
-      message,
+      userMessage,
       previousQueryText
     );
 
@@ -79,7 +82,7 @@ export async function POST(req: NextRequest) {
     // Step 3: Send products aback to AI for personalized response (optional)
     const optimizedProducts = optimizeProductForAI(products);
     const personalizedReply = await generatePersonalizedReply(
-      message,
+      userMessage,
       optimizedProducts,
       history
     );

@@ -18,6 +18,8 @@
 
 ## 🚨 **BACKEND - IN PROGRESS**
 
+- [ ] Add **system** message to prompt
+- [ ] Make the intent prompt output the category, and use it in filtering (hybrig, vector + metadata search); let's it actually return the filtering _"object"_ too, if there must be any
 - [ ] Complete error handling for full workflow
 - [ ] Handle rate limit error
 - [ ] Limit token or chat messages turn to 10 (maybe generate an uuid on the frontend and send it to backend, or limit should be for all users?)

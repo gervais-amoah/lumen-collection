@@ -1,5 +1,5 @@
 // lib/gemini.ts
-import { OptimizedProduct, Product } from "@/types/product";
+import { OptimizedProduct } from "@/types/product";
 import { GoogleGenAI } from "@google/genai";
 
 const genAI = new GoogleGenAI({
@@ -7,6 +7,7 @@ const genAI = new GoogleGenAI({
 });
 
 // TODO: Type functions' outputs
+// TODO: Make this a class
 
 export async function getSearchIntent(
   userMessage: string,
