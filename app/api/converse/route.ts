@@ -1,11 +1,12 @@
 // app/api/converse/route.ts
 import { getCachedResults, setCachedResults } from "@/lib/cache";
-import { generatePersonalizedReply, getSearchIntent } from "@/lib/gemini";
 import { optimizeProductForAI } from "@/lib/utils";
 import { semanticSearch } from "@/lib/vector-search";
 import { ChatHistory } from "@/types/chat";
 import { Product } from "@/types/product";
 import { NextRequest } from "next/server";
+
+import { geminiClient } from "@/lib/gemini";
 
 export async function POST(req: NextRequest) {
   try {
@@ -35,6 +36,9 @@ export async function POST(req: NextRequest) {
         cache_hit: false,
       });
     }
+
+    // Destructure Gemini client methods
+    const { getSearchIntent, generatePersonalizedReply } = geminiClient;
 
     // Step 1: Get Gemini response with intent analysis
     const { assistant_response, query_text } = await getSearchIntent(
