@@ -1,9 +1,4 @@
 // Conversation history type
-export interface ChatHistory {
-  role: string; // e.g. "user" | "assistant" | "system"
-  content: string;
-}
-
 export interface SearchIntentResult {
   assistant_response: string;
   query_text: string;
@@ -15,6 +10,6 @@ export interface PersonalizedReplyResult {
 }
 
 export interface ChatMessage {
-  role: string;
+  role: string; // e.g. "user" | "assistant" | "system"
   content: string;
 }

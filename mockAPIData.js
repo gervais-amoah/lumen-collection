@@ -1,7 +1,7 @@
 const chat = {
   "vague-message": [
     {
-      message: "I need a dress",
+      userMessage: "I need a dress",
       history: [],
     },
     {
@@ -12,7 +12,7 @@ const chat = {
   ],
   "off-topic": [
     {
-      message: "What's the weather today?",
+      userMessage: "What's the weather today?",
       history: [],
     },
     {
@@ -24,7 +24,7 @@ const chat = {
   ],
   "good-message": [
     {
-      message: "I need a red dress for a wedding",
+      userMessage: "I need a red dress for a wedding",
       history: [],
     },
     {
@@ -139,7 +139,7 @@ const chat = {
   ],
   "narrow-products": [
     {
-      message: "ok", // i did not continue the discussion
+      userMessage: "ok", // i did not continue the discussion
       history: [
         { role: "user", content: "I need some nice shoes for an interview" },
         {
@@ -296,7 +296,7 @@ const chat = {
   ],
   "good-message-test-cache": [
     {
-      message: "Looking for a red dress for a wedding",
+      userMessage: "Looking for a red dress for a wedding",
       history: [],
     },
   ],
