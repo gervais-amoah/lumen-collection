@@ -40,5 +40,6 @@
 2. Build frontend layout & chat interface
 3. Connect frontend to API
 4. Add cart functionality
+5. If possible, make "add to cart" and "process to checkout" done through chat too (Agent behavior)
 
 **Current Block**: Backend personalization step
