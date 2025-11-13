@@ -1,6 +1,6 @@
 // lib/services/conversation-service.ts
 import { getCachedResults, setCachedResults } from "@/lib/cache";
-import { geminiClient } from "@/lib/gemini";
+import { geminiClient } from "@/lib/ai/clients/gemini";
 import { optimizeProductForAI } from "@/lib/utils";
 import { semanticSearch } from "@/lib/vector-search";
 import { ChatMessage, PersonalizedReplyResult } from "@/types/chat";

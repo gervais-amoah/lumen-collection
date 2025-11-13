@@ -18,7 +18,7 @@
 
 ## 🚨 **BACKEND - IN PROGRESS**
 
-- [ ] Add **system** message to prompt
+- [ ] Add **system instructions** to Gemini API
 - [ ] Make the intent prompt output the category, and use it in filtering (hybrig, vector + metadata search); let's it actually return the filtering _"object"_ too, if there must be any
 - [ ] Complete error handling for full workflow
 - [ ] Handle rate limit error

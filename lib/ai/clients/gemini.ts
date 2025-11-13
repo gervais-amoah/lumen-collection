@@ -1,5 +1,8 @@
-// lib/gemini.ts
-import { getPersonalizedReplyPrompt, getSearchIntentPrompt } from "@/prompts";
+// lib/ai/clients/gemini.ts
+import {
+  getPersonalizedReplyPrompt,
+  getSearchIntentPrompt,
+} from "@/lib/ai/prompts";
 import {
   ChatMessage,
   PersonalizedReplyResult,
