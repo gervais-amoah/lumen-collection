@@ -33,6 +33,7 @@
 - [ ] Cart state management
 - [ ] Loading states & animations
 - [ ] Checkout page (mock)
+- [ ] Use (Reat Bits)[https://reactbits.dev/get-started/introduction] for animation effects
 
 ## 🎯 **NEXT PRIORITY**
 
