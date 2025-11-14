@@ -1,18 +1,10 @@
-import { Navbar } from "@/components/layout/navbar";
-import { ModeToggle } from "@/components/assistant/mode-toggle";
-import { WelcomeMessage } from "@/components/assistant/welcome-message";
 import { AssistantAvatar } from "@/components/assistant/avatar";
 import { ChatInput } from "@/components/assistant/chat-input";
+import { WelcomeMessage } from "@/components/assistant/welcome-message";
 
 export default function WelcomePage() {
   return (
-    <div className="flex flex-col h-screen">
-      <Navbar />
-
-      <div className="px-4 mt-4">
-        <ModeToggle active="assistant" />
-      </div>
-
+    <>
       <div className="flex flex-1 overflow-hidden">
         {/* Left Panel */}
         <div className="w-[65%] border-r relative">
@@ -32,6 +24,6 @@ export default function WelcomePage() {
           <ChatInput />
         </div>
       </div>
-    </div>
+    </>
   );
 }
