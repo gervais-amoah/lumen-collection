@@ -1,8 +1,8 @@
 "use client";
 
 import { ChatPanel } from "@/components/assistant/chat-panel";
-import { ProductGrid } from "@/components/common/product-grid";
 import { WelcomeMessage } from "@/components/assistant/welcome-message";
+import { ProductGrid } from "@/components/common/product-grid";
 import { useProductStore } from "@/store/useProductStore";
 
 export default function WelcomePage() {
@@ -20,7 +20,9 @@ export default function WelcomePage() {
       </div>
 
       {/* Right Chat Panel */}
-      <ChatPanel />
+      <div className="w-[35%] border-l flex flex-col h-full">
+        <ChatPanel />
+      </div>
     </div>
   );
 }
