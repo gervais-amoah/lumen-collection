@@ -11,8 +11,8 @@ import { useEffect, useRef, useState } from "react";
 
 // Gemini Flash free tier: 10 RPM / 250 RPD
 // Conservative limit to stay well within free tier
-const MAX_MESSAGE_LENGTH = 200; // Characters
-const MAX_MESSAGES_PER_SESSION = 15; // Prevent excessive usage
+const MAX_MESSAGE_LENGTH = 150; // Characters
+const MAX_MESSAGES_PER_SESSION = 10; // Prevent excessive usage
 
 export function ChatPanel() {
   const [message, setMessage] = useState("");
@@ -151,7 +151,7 @@ export function ChatPanel() {
                 msg.role === "user" ? "ml-auto flex-row-reverse" : "mr-auto"
               )}
             >
-              <Avatar className="h-8 w-8 flex-shrink-0">
+              <Avatar className="h-8 w-8 shrink-0">
                 <AvatarFallback
                   className={cn(
                     "text-xs",
@@ -178,7 +178,7 @@ export function ChatPanel() {
         )}
         {isLoading && (
           <div className="flex gap-3 max-w-[85%] mr-auto">
-            <Avatar className="h-8 w-8 flex-shrink-0">
+            <Avatar className="h-8 w-8 shrink-0">
               <AvatarFallback className="bg-primary/10 text-primary">
                 <Bot className="h-4 w-4" />
               </AvatarFallback>
@@ -196,20 +196,37 @@ export function ChatPanel() {
       </CardContent>
 
       {/* Message Input */}
-      <CardFooter className="border-t p-4">
-        <form onSubmit={handleSubmit} className="flex w-full items-end gap-2">
-          <div className="flex-1 space-y-2">
-            <Textarea
-              ref={textareaRef}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Describe what you're looking for... (e.g., 'red dress for wedding')"
-              className="min-h-[40px] max-h-[120px] resize-none"
+      <CardFooter className="border-t px-4 [.border-t]:pt-4 pb-4">
+        <form onSubmit={handleSubmit} className="w-full space-y-2">
+          <div className="flex w-full items-end gap-2">
+            <div className="flex-1">
+              <Textarea
+                ref={textareaRef}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Describe what you're looking for... (e.g., 'red dress for wedding')"
+                className="min-h-10 max-h-[120px] resize-none p-0 pb-2 border-0 focus:ring-0 focus-visible:ring-0 bg-transparent"
+                disabled={
+                  isLoading || messages.length >= MAX_MESSAGES_PER_SESSION
+                }
+              />
+            </div>
+            <Button
+              type="submit"
+              size="icon"
               disabled={
-                isLoading || messages.length >= MAX_MESSAGES_PER_SESSION
+                !message.trim() ||
+                isLoading ||
+                message.length > MAX_MESSAGE_LENGTH ||
+                messages.length >= MAX_MESSAGES_PER_SESSION
               }
-            />
+              className="shrink-0"
+            >
+              <Send className="h-4 w-4" />
+            </Button>
+          </div>
+          <div className="dddd">
             <div className="flex justify-between text-xs text-muted-foreground">
               <span>
                 {charactersRemaining < 50 &&
@@ -220,19 +237,6 @@ export function ChatPanel() {
               </span>
             </div>
           </div>
-          <Button
-            type="submit"
-            size="icon"
-            disabled={
-              !message.trim() ||
-              isLoading ||
-              message.length > MAX_MESSAGE_LENGTH ||
-              messages.length >= MAX_MESSAGES_PER_SESSION
-            }
-            className="flex-shrink-0"
-          >
-            <Send className="h-4 w-4" />
-          </Button>
         </form>
       </CardFooter>
     </div>

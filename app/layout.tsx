@@ -32,9 +32,6 @@ export default function RootLayout({
         <div className="flex flex-col h-screen">
           <Navbar />
 
-          <div className="px-4 mt-4">
-            <ModeToggle active="assistant" />
-          </div>
           {children}
         </div>
       </body>

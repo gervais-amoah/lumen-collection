@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
+import { ModeToggle } from "../assistant/mode-toggle";
 
 export function Navbar() {
   return (
@@ -9,6 +10,8 @@ export function Navbar() {
       <Link href="/" className="font-semibold text-lg">
         Lumen Style
       </Link>
+
+      <ModeToggle active="assistant" />
 
       <nav className="flex items-center gap-4">
         <Link href="/checkout" aria-label="Cart">
