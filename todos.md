@@ -18,6 +18,8 @@
 
 ## 🚨 **BACKEND - IN PROGRESS**
 
+- [ ] Add **system instructions** to Gemini API
+- [ ] Make the intent prompt output the category, and use it in filtering (hybrig, vector + metadata search); let's it actually return the filtering _"object"_ too, if there must be any
 - [ ] Complete error handling for full workflow
 - [ ] Handle rate limit error
 - [ ] Limit token or chat messages turn to 10 (maybe generate an uuid on the frontend and send it to backend, or limit should be for all users?)
@@ -31,6 +33,7 @@
 - [ ] Cart state management
 - [ ] Loading states & animations
 - [ ] Checkout page (mock)
+- [ ] Use (Reat Bits)[https://reactbits.dev/get-started/introduction] for animation effects
 
 ## 🎯 **NEXT PRIORITY**
 
@@ -38,5 +41,6 @@
 2. Build frontend layout & chat interface
 3. Connect frontend to API
 4. Add cart functionality
+5. If possible, make "add to cart" and "process to checkout" done through chat too (Agent behavior)
 
 **Current Block**: Backend personalization step
