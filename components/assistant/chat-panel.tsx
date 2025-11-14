@@ -10,8 +10,8 @@ import { Bot, Send } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 // Gemini Flash free tier: 10 RPM / 250 RPD
-// Conservative limit to stay well within free tier
-const MAX_MESSAGE_LENGTH = 150; // Characters
+// Conservative limit to stay within free tier
+const MAX_MESSAGE_LENGTH = 200; // Characters
 const MAX_MESSAGES_PER_SESSION = 10; // Prevent excessive usage
 
 export function ChatPanel() {
@@ -45,7 +45,8 @@ export function ChatPanel() {
     if (
       !message.trim() ||
       isLoading ||
-      messages.length >= MAX_MESSAGES_PER_SESSION
+      messages.length >= MAX_MESSAGES_PER_SESSION ||
+      message.length > MAX_MESSAGE_LENGTH
     )
       return;
 
@@ -100,6 +101,7 @@ export function ChatPanel() {
 
   const charactersRemaining = MAX_MESSAGE_LENGTH - message.length;
   const messagesRemaining = MAX_MESSAGES_PER_SESSION - messages.length;
+  const isOverLimit = message.length > MAX_MESSAGE_LENGTH;
 
   return (
     <div className="flex h-full flex-col border-l">
@@ -226,16 +228,17 @@ export function ChatPanel() {
               <Send className="h-4 w-4" />
             </Button>
           </div>
-          <div className="dddd">
-            <div className="flex justify-between text-xs text-muted-foreground">
-              <span>
-                {charactersRemaining < 50 &&
-                  `${charactersRemaining} characters left`}
-              </span>
-              <span>
-                {messages.length}/{MAX_MESSAGES_PER_SESSION} messages
-              </span>
-            </div>
+          <div className="flex justify-between text-xs">
+            <span
+              className={isOverLimit ? "text-red-500" : "text-muted-foreground"}
+            >
+              {isOverLimit
+                ? `${message.length - MAX_MESSAGE_LENGTH} characters over limit`
+                : `${charactersRemaining} characters left`}
+            </span>
+            <span className="text-muted-foreground">
+              {messages.length}/{MAX_MESSAGES_PER_SESSION} messages
+            </span>
           </div>
         </form>
       </CardFooter>
