@@ -1,7 +1,7 @@
 "use client";
 
 import { ChatPanel } from "@/components/assistant/chat-panel";
-import { ProductGrid } from "@/components/assistant/product-grid";
+import { ProductGrid } from "@/components/common/product-grid";
 import { WelcomeMessage } from "@/components/assistant/welcome-message";
 import { useProductStore } from "@/store/useProductStore";
 
