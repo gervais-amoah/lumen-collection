@@ -3,23 +3,13 @@ import { getCachedResults, setCachedResults } from "@/lib/cache";
 import { geminiClient } from "@/lib/ai/clients/gemini";
 import { optimizeProductForAI } from "@/lib/utils";
 import { semanticSearch } from "@/lib/vector-search";
-import { ChatMessage, PersonalizedReplyResult } from "@/types/chat";
+import {
+  ChatMessage,
+  ConversationResult,
+  PersonalizedReplyResult,
+  ProcessMessageParams,
+} from "@/types/chat";
 import { Product } from "@/types/product";
-
-interface ProcessMessageParams {
-  userMessage: string;
-  previousQueryText: string;
-  history: ChatMessage[];
-}
-
-interface ConversationResult {
-  assistant_response: string;
-  highlighted_product_id?: string | null;
-  products: Product[];
-  query_text?: string;
-  cache_hit: boolean;
-  error?: boolean;
-}
 
 export class ConversationService {
   private readonly MAX_CONVERSATION_LENGTH = 10;
