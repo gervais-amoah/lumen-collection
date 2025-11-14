@@ -1,29 +1,26 @@
-import { AssistantAvatar } from "@/components/assistant/avatar";
-import { ChatInput } from "@/components/assistant/chat-input";
+"use client";
+
+import { ChatPanel } from "@/components/assistant/chat-panel";
+import { ProductGrid } from "@/components/assistant/product-grid";
 import { WelcomeMessage } from "@/components/assistant/welcome-message";
+import { useProductStore } from "@/store/useProductStore";
 
 export default function WelcomePage() {
+  const products = useProductStore((state) => state.products);
+
   return (
-    <>
-      <div className="flex flex-1 overflow-hidden">
-        {/* Left Panel */}
-        <div className="w-[65%] border-r relative">
+    <div className="flex flex-1 overflow-hidden">
+      {/* Left Panel */}
+      <div className="w-[65%] border-r relative overflow-auto p-4">
+        {products.length === 0 ? (
           <WelcomeMessage />
-        </div>
-
-        {/* Right Chat Panel */}
-        <div className="w-[35%] flex flex-col">
-          <div className="flex items-center justify-center py-6">
-            <AssistantAvatar />
-          </div>
-
-          <div className="flex-1 px-4 text-sm text-muted-foreground">
-            {/* No messages yet */}
-          </div>
-
-          <ChatInput />
-        </div>
+        ) : (
+          <ProductGrid products={products} />
+        )}
       </div>
-    </>
+
+      {/* Right Chat Panel */}
+      <ChatPanel />
+    </div>
   );
 }
