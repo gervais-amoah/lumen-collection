@@ -63,7 +63,7 @@ export function ChatPanel() {
 
     try {
       // Sleep for a short time then return a mock response
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 5000));
       // Mock API response
       const mockData: ConversationResult = {
         assistant_response: `I found some great options for "${userMessage}". Here are the best matches:`,
@@ -144,7 +144,7 @@ export function ChatPanel() {
               </Badge>
             </div>
             <p className="text-sm text-muted-foreground">
-              {messagesRemaining} conversations remaining
+              {messagesRemaining} messages remaining
             </p>
           </div>
         </div>
@@ -205,7 +205,7 @@ export function ChatPanel() {
                 <Bot className="h-4 w-4" />
               </AvatarFallback>
             </Avatar>
-            <div className="rounded-lg bg-muted px-3 py-2 text-sm">
+            <div className="flex items-center rounded-lg bg-muted px-3 py-2 text-sm">
               <div className="flex space-x-1">
                 <div className="h-2 w-2 animate-bounce rounded-full bg-muted-foreground"></div>
                 <div className="h-2 w-2 animate-bounce rounded-full bg-muted-foreground [animation-delay:-0.3s]"></div>
@@ -256,9 +256,9 @@ export function ChatPanel() {
                 ? `${message.length - MAX_MESSAGE_LENGTH} characters over limit`
                 : `${charactersRemaining} characters left`}
             </span>
-            <span className="text-muted-foreground">
+            {/* <span className="text-muted-foreground">
               {messages.length}/{MAX_MESSAGES_PER_SESSION} messages
-            </span>
+            </span> */}
           </div>
         </form>
       </CardFooter>
