@@ -15,7 +15,7 @@ import { useEffect, useRef, useState } from "react";
 // Gemini Flash free tier: 10 RPM / 250 RPD
 // Conservative limit to stay within free tier
 const MAX_MESSAGE_LENGTH = 200; // Characters
-const MAX_MESSAGES_PER_SESSION = 10; // Prevent excessive usage
+const MAX_MESSAGES_PER_SESSION = 15; // Prevent excessive usage
 
 export function ChatPanel() {
   const [message, setMessage] = useState("");
@@ -114,7 +114,13 @@ export function ChatPanel() {
       ]);
     } finally {
       setIsLoading(false);
-      textareaRef.current?.focus();
+
+      // Only focus if user can still send messages (not at session limit)
+      if (messages.length < MAX_MESSAGES_PER_SESSION) {
+        setTimeout(() => {
+          textareaRef.current?.focus();
+        }, 0);
+      }
     }
   };
 
@@ -179,18 +185,6 @@ export function ChatPanel() {
                 msg.role === "user" ? "ml-auto flex-row-reverse" : "mr-auto"
               )}
             >
-              <Avatar className="h-8 w-8 shrink-0">
-                <AvatarFallback
-                  className={cn(
-                    "text-xs",
-                    msg.role === "user"
-                      ? "bg-blue-100 text-blue-800"
-                      : "bg-primary/10 text-primary"
-                  )}
-                >
-                  {msg.role === "user" ? "You" : <Bot className="h-4 w-4" />}
-                </AvatarFallback>
-              </Avatar>
               <div
                 className={cn(
                   "rounded-lg px-3 py-2 text-sm",
@@ -206,11 +200,6 @@ export function ChatPanel() {
         )}
         {isLoading && (
           <div className="flex gap-3 max-w-[85%] mr-auto">
-            <Avatar className="h-8 w-8 shrink-0">
-              <AvatarFallback className="bg-primary/10 text-primary">
-                <Bot className="h-4 w-4" />
-              </AvatarFallback>
-            </Avatar>
             <div className="flex items-center rounded-lg bg-muted px-3 py-2 text-sm">
               <div className="flex space-x-1">
                 <div className="h-2 w-2 animate-bounce rounded-full bg-muted-foreground"></div>
@@ -235,9 +224,6 @@ export function ChatPanel() {
                 onKeyDown={handleKeyDown}
                 placeholder="Describe what you're looking for... (e.g., 'red dress for wedding')"
                 className="min-h-10 max-h-[120px] resize-none p-0 pb-2 border-0 focus:ring-0 focus-visible:ring-0 bg-transparent"
-                disabled={
-                  isLoading || messages.length >= MAX_MESSAGES_PER_SESSION
-                }
               />
             </div>
             <Button
@@ -262,9 +248,6 @@ export function ChatPanel() {
                 ? `${message.length - MAX_MESSAGE_LENGTH} characters over limit`
                 : `${charactersRemaining} characters left`}
             </span>
-            {/* <span className="text-muted-foreground">
-              {messages.length}/{MAX_MESSAGES_PER_SESSION} messages
-            </span> */}
           </div>
         </form>
       </CardFooter>
