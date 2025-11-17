@@ -32,6 +32,11 @@ export function ChatPanel() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Focus textarea on mount
+  useEffect(() => {
+    textareaRef.current?.focus();
+  }, []);
+
   // Auto-resize textarea
   useEffect(() => {
     if (textareaRef.current) {
@@ -63,7 +68,7 @@ export function ChatPanel() {
 
     try {
       // Sleep for a short time then return a mock response
-      await new Promise((resolve) => setTimeout(resolve, 5000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       // Mock API response
       const mockData: ConversationResult = {
         assistant_response: `I found some great options for "${userMessage}". Here are the best matches:`,
@@ -109,6 +114,7 @@ export function ChatPanel() {
       ]);
     } finally {
       setIsLoading(false);
+      textareaRef.current?.focus();
     }
   };
 
