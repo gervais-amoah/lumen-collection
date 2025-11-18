@@ -1,8 +1,8 @@
 // app/api/converse/route.ts
+import { rateLimit } from "@/lib/rate-limit";
+import { ConversationService } from "@/lib/services/conversation-service";
 import { NextRequest } from "next/server";
 import { z } from "zod";
-import { ConversationService } from "@/lib/services/conversation-service";
-import { rateLimit } from "@/lib/rate-limit";
 
 // Input validation schema
 const ConverseRequestSchema = z.object({

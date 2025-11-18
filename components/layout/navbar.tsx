@@ -14,7 +14,7 @@ export function Navbar() {
         Lumen Style
       </Link>
 
-      <ModeToggle active="assistant" />
+      <ModeToggle />
 
       <nav className="flex items-center gap-4">
         <Link href="/checkout" aria-label="Cart">

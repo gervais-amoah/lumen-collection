@@ -6,9 +6,6 @@ import { Button } from "@/components/ui/button";
 import { CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { MOCK_PRODUCTS } from "@/store/dummy/mockProducts";
-import { useProductStore } from "@/store/useProductStore";
-import { ConversationResult } from "@/types/chat";
 import { Bot, Send } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -25,7 +22,6 @@ export function ChatPanel() {
   const [isLoading, setIsLoading] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const setProducts = useProductStore((state) => state.setProducts);
 
   // Auto-scroll to bottom when messages change
   useEffect(() => {
@@ -67,28 +63,13 @@ export function ChatPanel() {
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
 
     try {
-      // Sleep for a short time then return a mock response
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      // Mock API response
-      const mockData: ConversationResult = {
-        assistant_response: `I found some great options for "${userMessage}". Here are the best matches:`,
-        products: MOCK_PRODUCTS,
-        cache_hit: false,
-      };
-
-      setProducts(mockData.products);
-
-      return setMessages((prev) => [
-        ...prev,
-        { role: "assistant", content: mockData.assistant_response },
-      ]);
-
+      // return checkSupabaseHealth();
       // TODO: Replace with actual API call
       const response = await fetch("/api/converse", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          message: userMessage,
+          userMessage,
           history: messages,
         }),
       });
