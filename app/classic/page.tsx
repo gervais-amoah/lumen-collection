@@ -1,5 +1,6 @@
 "use client";
 
+import ShinyText from "@/components/animation/shiny-text";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -43,7 +44,8 @@ export default function ClassicPage() {
           height={224}
           className="w-56 h-56 object-cover"
         />
-        <p className="text-[#b0945e] text-4xl">Loading products...</p>
+
+        <ShinyText text="Loading products..." speed={4} className="text-2xl" />
       </div>
     );
   if (error) return <p className="text-red-600">Error: {error}</p>;
