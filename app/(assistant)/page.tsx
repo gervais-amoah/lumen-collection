@@ -1,36 +1,27 @@
-import { Navbar } from "@/components/layout/navbar";
-import { ModeToggle } from "@/components/assistant/mode-toggle";
+"use client";
+
+import { ChatPanel } from "@/components/assistant/chat-panel";
 import { WelcomeMessage } from "@/components/assistant/welcome-message";
-import { AssistantAvatar } from "@/components/assistant/avatar";
-import { ChatInput } from "@/components/assistant/chat-input";
+import { ProductGrid } from "@/components/common/product-grid";
+import { useProductStore } from "@/store/useProductStore";
 
 export default function WelcomePage() {
-  return (
-    <div className="flex flex-col h-screen">
-      <Navbar />
+  const products = useProductStore((state) => state.products);
 
-      <div className="px-4 mt-4">
-        <ModeToggle active="assistant" />
+  return (
+    <div className="flex flex-1 overflow-hidden">
+      {/* Left Panel */}
+      <div className="w-[65%] border-r relative overflow-auto p-4">
+        {products.length === 0 ? (
+          <WelcomeMessage />
+        ) : (
+          <ProductGrid products={products} />
+        )}
       </div>
 
-      <div className="flex flex-1 overflow-hidden">
-        {/* Left Panel */}
-        <div className="w-[65%] border-r relative">
-          <WelcomeMessage />
-        </div>
-
-        {/* Right Chat Panel */}
-        <div className="w-[35%] flex flex-col">
-          <div className="flex items-center justify-center py-6">
-            <AssistantAvatar />
-          </div>
-
-          <div className="flex-1 px-4 text-sm text-muted-foreground">
-            {/* No messages yet */}
-          </div>
-
-          <ChatInput />
-        </div>
+      {/* Right Chat Panel */}
+      <div className="w-[35%] border-l flex flex-col h-full">
+        <ChatPanel />
       </div>
     </div>
   );

@@ -30,3 +30,12 @@ export interface CachedResults {
   products: Product[];
   timestamp: number;
 }
+
+// For the frontend cart functionality
+export interface CartItem {
+  id: string;
+  name: string;
+  price: number;
+  imageUrl: string;
+  quantity: number;
+}

@@ -41,6 +41,7 @@ Aligned with **Square Online merchants** selling fashion goods — scalable to t
 | Assets        | Images store on Supabase                                       |
 
 ✅ All tools are free and suitable for demo deployment.
+PS: NEVER use`any` in TypeScript!
 
 ---
 

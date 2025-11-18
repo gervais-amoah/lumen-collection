@@ -1,8 +1,8 @@
 // app/api/converse/route.ts
+import { rateLimit } from "@/lib/rate-limit";
+import { ConversationService } from "@/lib/services/conversation-service";
 import { NextRequest } from "next/server";
 import { z } from "zod";
-import { ConversationService } from "@/lib/services/conversation-service";
-import { rateLimit } from "@/lib/rate-limit";
 
 // Input validation schema
 const ConverseRequestSchema = z.object({
@@ -15,7 +15,7 @@ const ConverseRequestSchema = z.object({
         content: z.string(),
       })
     )
-    .max(10)
+    .max(15) // TODO: make this global for frontend/backend
     .default([]),
 });
 
@@ -49,6 +49,10 @@ export async function POST(req: NextRequest) {
       previousQueryText,
       history,
     });
+
+    // log result for debugging
+    console.log("Conversation history: \n\n", history);
+    console.log("Conversation Result send to the frontend: \n\n", result);
 
     return Response.json(result);
   } catch (error) {
