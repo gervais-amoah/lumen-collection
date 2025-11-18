@@ -15,5 +15,9 @@ module.exports = {
         "size-200": "200% 200%",
       },
     },
+    fontFamily: {
+      sans: ["var(--font-inter)", "sans-serif"],
+      serif: ["var(--font-playfair)", "serif"],
+    },
   },
 };

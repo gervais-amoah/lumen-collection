@@ -155,7 +155,7 @@ export function ChatPanel() {
           </Avatar>
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <h3 className="font-semibold">Style Assistant</h3>
+              <h3 className="font-serif font-semibold">Style Assistant</h3>
               <Badge
                 variant="secondary"
                 className="bg-green-100 text-green-800 hover:bg-green-100"
@@ -181,10 +181,10 @@ export function ChatPanel() {
                 width={150}
                 height={150}
               />
-              <p className="text-muted-foreground">
+              <p className="font-serif text-muted-foreground">
                 Start a conversation to begin your styling journey
               </p>
-              <p className="text-xs text-muted-foreground">
+              <p className="font-sans text-xs text-muted-foreground">
                 Ask me about dresses, accessories, or your preferred style!
               </p>
             </div>
