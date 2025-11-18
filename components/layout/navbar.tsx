@@ -4,6 +4,7 @@ import { useCartStore } from "@/store/useCartStore";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "../assistant/mode-toggle";
+import { Badge } from "../ui/badge";
 import FluidGlass from "../ui/fluid-glass";
 
 export function Navbar() {
@@ -19,9 +20,11 @@ export function Navbar() {
         <ModeToggle />
 
         <nav className="flex items-center gap-4">
-          <Link href="/checkout" aria-label="Cart">
-            <ShoppingCart className="w-5 h-5" />
-            <span>{totalItems}</span>
+          <Link href="/checkout" aria-label="Cart" className="relative">
+            <ShoppingCart className="w-6 h-6" />
+            <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-2 -right-2">
+              {totalItems}
+            </Badge>
           </Link>
         </nav>
       </header>
