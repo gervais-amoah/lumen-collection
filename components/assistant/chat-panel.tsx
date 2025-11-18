@@ -173,7 +173,7 @@ export function ChatPanel() {
       </CardHeader>
 
       {/* Chat Messages Area */}
-      <CardContent className="flex-1 overflow-auto p-4 space-y-4">
+      <CardContent className="flex-1 overflow-auto p-4 space-y-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {messages.length === 0 ? (
           <div className="flex h-full items-center justify-center text-center">
             <div className="flex flex-col items-center space-y-2">
