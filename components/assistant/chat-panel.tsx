@@ -155,7 +155,9 @@ export function ChatPanel() {
           </Avatar>
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <h3 className="font-serif font-semibold">Style Assistant</h3>
+              <h3 className="font-serif font-semibold">
+                Eva (Style Assistant)
+              </h3>
               <Badge
                 variant="secondary"
                 className="bg-green-100 text-green-800 hover:bg-green-100"
