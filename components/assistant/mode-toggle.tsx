@@ -21,7 +21,18 @@ export function ModeToggle() {
   return (
     <div className="flex gap-2">
       {links.map(({ href, label, key }) => (
-        <Link key={key} href={href} className={getLinkClass(activeKey === key)}>
+        <Link
+          key={key}
+          href={href}
+          className={`
+        px-4 py-2 rounded-lg font-medium transition-all duration-200
+        ${
+          activeKey === key
+            ? "bg-blue-600 text-white shadow-md"
+            : "text-gray-700 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700"
+        }
+      `}
+        >
           {label}
         </Link>
       ))}
