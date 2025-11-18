@@ -5,13 +5,15 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/", label: "Assistant Mode", key: "assistant" },
+  { href: "/", label: "Assistant Mode ✨", key: "assistant" },
   { href: "/classic", label: "Classic Mode", key: "classic" },
 ] as const;
 const getLinkClass = (isActive: boolean) =>
   cn(
-    "px-4 py-2 rounded bg-muted hover:bg-muted/70",
-    isActive && "bg-blue-600 text-white hover:bg-blue-600"
+    "px-4 py-2 rounded-full font-medium transition-all duration-200",
+    isActive
+      ? "bg-blue-600 text-white shadow-md"
+      : "text-gray-700 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700"
   );
 
 export function ModeToggle() {

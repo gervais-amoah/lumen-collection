@@ -4,24 +4,41 @@ import { useCartStore } from "@/store/useCartStore";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { ModeToggle } from "../assistant/mode-toggle";
+import { Badge } from "../ui/badge";
+import FluidGlass from "../ui/fluid-glass";
+import Image from "next/image";
 
 export function Navbar() {
   const totalItems = useCartStore((state) => state.getTotalItems());
 
   return (
-    <header className="flex items-center justify-between px-4 py-3 border-b">
-      <Link href="/" className="font-semibold text-lg">
-        Lumen Style
-      </Link>
-
-      <ModeToggle />
-
-      <nav className="flex items-center gap-4">
-        <Link href="/checkout" aria-label="Cart">
-          <ShoppingCart className="w-5 h-5" />
-          <span>{totalItems}</span>
+    <FluidGlass className="my-6 w-4/5 mx-auto rounded-full pl-0 pr-6">
+      <header className="flex items-center justify-between px-4 py-3">
+        <Link
+          href="/"
+          className="font-semibold text-lg flex items-center gap-2"
+        >
+          <Image
+            src="/images/lc-logo-sm.jpeg"
+            alt="Lumen Logo"
+            className=" rounded-full"
+            width={40}
+            height={40}
+          />
+          Lumen Collection
         </Link>
-      </nav>
-    </header>
+
+        <ModeToggle />
+
+        <nav className="flex items-center gap-4">
+          <Link href="/checkout" aria-label="Cart" className="relative">
+            <ShoppingCart className="w-6 h-6" />
+            <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-2 -right-2">
+              {totalItems}
+            </Badge>
+          </Link>
+        </nav>
+      </header>
+    </FluidGlass>
   );
 }

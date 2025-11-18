@@ -2,18 +2,25 @@
 
 import FadeContent from "@/components/animation/fade-content";
 
-
 export function WelcomeMessage() {
   return (
-    <FadeContent blur={true} duration={1000} easing="ease-out" initialOpacity={0}>
-      <div className="flex flex-col items-center justify-center h-full text-center px-6">
-        <h1 className="text-3xl font-bold mb-2">
-          Some Welcome Message
-        </h1>
-        <p className="text-muted-foreground max-w-md">
-          Subtitle, inviting user to start conversation with assistant!
-        </p>
-      </div>
-    </FadeContent>
+    <div className="h-full flex flex-col justify-center items-center space-y-4 px-4  py-12">
+      <FadeContent
+        blur={true}
+        duration={1000}
+        easing="ease-out"
+        initialOpacity={0}
+      >
+        <div className="text-center">
+          <h1 className="font-serif text-4xl md:text-5xl text-gray-900 dark:text-white mb-4">
+            Discover Your Signature Style
+          </h1>
+          <p className="font-sans text-base md:text-xl text-gray-700 dark:text-gray-300">
+            Let our personal AI stylist guide you through our curated collection
+            — find the perfect look effortlessly.
+          </p>
+        </div>
+      </FadeContent>
+    </div>
   );
 }

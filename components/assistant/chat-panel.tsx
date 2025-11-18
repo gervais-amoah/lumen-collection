@@ -139,7 +139,7 @@ export function ChatPanel() {
   const isOverLimit = message.length > MAX_MESSAGE_LENGTH;
 
   return (
-    <div className="flex h-full flex-col border-l">
+    <div className="flex h-full flex-col">
       {/* Assistant Header */}
       <CardHeader className="border-b p-4">
         <div className="flex items-center space-x-3">
@@ -154,38 +154,48 @@ export function ChatPanel() {
             </AvatarFallback>
           </Avatar>
           <div className="flex-1">
-            <div className="flex items-center gap-2">
-              <h3 className="font-semibold">Style Assistant</h3>
-              <Badge
-                variant="secondary"
-                className="bg-green-100 text-green-800 hover:bg-green-100"
-              >
-                Online
-              </Badge>
+            <div className="flex items-center justify-between gap-2">
+              <h3 className="font-serif font-semibold">
+                Eva — Style Concierge
+              </h3>
+              {messagesRemaining <= 0 ? (
+                <Badge variant="destructive" className=" text-red-200">
+                  Session Ended
+                </Badge>
+              ) : (
+                <Badge
+                  variant="secondary"
+                  className="bg-green-100 text-green-800 hover:bg-green-100"
+                >
+                  Online
+                </Badge>
+              )}
             </div>
             <p className="text-sm text-muted-foreground">
-              {messagesRemaining} messages remaining
+              {messagesRemaining} interactions remaining
             </p>
           </div>
         </div>
       </CardHeader>
 
       {/* Chat Messages Area */}
-      <CardContent className="flex-1 overflow-auto p-4 space-y-4">
+      <CardContent className="flex-1 overflow-auto p-4 space-y-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {messages.length === 0 ? (
           <div className="flex h-full items-center justify-center text-center">
             <div className="flex flex-col items-center space-y-2">
               <Image
                 src="/images/assistant_avatar.jpg"
                 alt="Assistant Avatar"
+                className=" rounded-4xl"
                 width={150}
                 height={150}
               />
-              <p className="text-muted-foreground">
-                Start a conversation to begin your styling journey
+              <p className="font-serif text-muted-foreground">
+                Your personal stylist is ready
               </p>
-              <p className="text-xs text-muted-foreground">
-                Ask me about dresses, accessories, or your preferred style!
+              <p className="font-sans text-xs text-muted-foreground">
+                Tell me what you have in mind, and I’ll refine the perfect
+                pieces for your look.
               </p>
             </div>
           </div>
@@ -226,7 +236,7 @@ export function ChatPanel() {
       </CardContent>
 
       {/* Message Input */}
-      <CardFooter className="border-t px-4 [.border-t]:pt-4 pb-4">
+      <CardFooter className="border-t px-2.5 [.border-t]:pt-4 pb-4">
         <form onSubmit={handleSubmit} className="w-full space-y-2">
           <div className="flex w-full items-end gap-2">
             <div className="flex-1">
@@ -236,7 +246,7 @@ export function ChatPanel() {
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Describe what you're looking for... (e.g., 'red dress for wedding')"
-                className="min-h-10 max-h-[120px] resize-none p-0 pb-2 border-0 focus:ring-0 focus-visible:ring-0 bg-transparent"
+                className="min-h-10 max-h-[120px] resize-none pl-2 pb-2 border-0 focus:ring-0 focus-visible:ring-0 bg-transparent"
               />
             </div>
             <Button
@@ -250,7 +260,7 @@ export function ChatPanel() {
               }
               className="shrink-0"
             >
-              <Send className="h-4 w-4" />
+              <Send className="h-5 w-5" />
             </Button>
           </div>
           <div className="flex justify-between text-xs">
