@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { useProductStore } from "@/store/useProductStore";
 import { Bot, Send } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -22,6 +23,13 @@ export function ChatPanel() {
   const [isLoading, setIsLoading] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Product store actions
+  const setProducts = useProductStore((state) => state.setProducts);
+
+  const setHighlighted = useProductStore(
+    (state) => state.setHighlightedProduct
+  );
 
   // Auto-scroll to bottom when messages change
   useEffect(() => {
@@ -76,6 +84,9 @@ export function ChatPanel() {
 
       const data = await response.json();
 
+      // log data for debugging
+      console.log("ChatPanel received data: \n\n", data);
+
       // Add assistant response to chat
       setMessages((prev) => [
         ...prev,
@@ -84,6 +95,16 @@ export function ChatPanel() {
           content: data.assistant_response,
         },
       ]);
+
+      // update products display logic can go here
+      if (data.products && data.products.length > 0) {
+        console.log("Products returned:", data.products);
+        setProducts(data.products);
+      }
+
+      if (data.highlighted_product_id) {
+        setHighlighted(data.highlighted_product_id);
+      }
     } catch (error) {
       console.error("Chat error:", error);
       setMessages((prev) => [

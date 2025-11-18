@@ -50,6 +50,9 @@ export async function POST(req: NextRequest) {
       history,
     });
 
+    // log result for debugging
+    console.log("Conversation Result send to the frontend: \n\n", result);
+
     return Response.json(result);
   } catch (error) {
     console.error("API Error:", error);

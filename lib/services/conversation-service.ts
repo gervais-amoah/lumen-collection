@@ -12,7 +12,7 @@ import {
 import { Product } from "@/types/product";
 
 export class ConversationService {
-  private readonly MAX_CONVERSATION_LENGTH = 10;
+  private readonly MAX_CONVERSATION_LENGTH = 15; // TODO: make this global for frontend/backend
 
   async processMessage(
     params: ProcessMessageParams

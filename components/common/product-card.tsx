@@ -14,9 +14,10 @@ import { useState } from "react";
 interface ProductCardProps {
   product: Product;
   index: number;
+  highlighted?: boolean;
 }
 
-export function ProductCard({ product, index }: ProductCardProps) {
+export function ProductCard({ product, index, highlighted }: ProductCardProps) {
   const [isAdded, setIsAdded] = useState(false);
   const addItem = useCartStore((state) => state.addItem);
 
@@ -131,8 +132,12 @@ export function ProductCard({ product, index }: ProductCardProps) {
             onClick={handleAddToCart}
             disabled={isAdded}
             className={cn(
-              "w-full gap-2",
-              isAdded && "bg-green-600 hover:bg-green-700"
+              "w-full gap-2 font-semibold transition-all",
+              highlighted
+                ? "bg-linear-to-r from-blue-500 to-green-400 bg-size-[200%_200%] animate-gradient text-white"
+                : isAdded
+                ? "bg-green-600 hover:bg-green-700 text-white"
+                : "bg-muted hover:bg-muted/70 text-gray-900"
             )}
             size="sm"
           >
