@@ -22,7 +22,7 @@ export default function WelcomePage() {
       </div>
 
       {/* Right Chat Panel */}
-      <div className="w-[35%] flex flex-col h-full pr-6 pb-6">
+      <div className="w-[35%] flex flex-col h-[calc(100%-120px)] mt-30 pr-6 pb-6">
         <FluidGlass className=" rounded-2xl h-full">
           <ChatPanel />
         </FluidGlass>

@@ -49,7 +49,7 @@ export default function ClassicPage() {
   if (error) return <p className="text-red-600">Error: {error}</p>;
 
   return (
-    <div className="pt-[40dvh] min-h-screen">
+    <div className="pt-[50dvh] min-h-screen">
       {/* HERO IMAGE HERE */}
       <div className="absolute top-0 left-0 w-full h-[50dvh] -z-10">
         <Image
