@@ -236,7 +236,7 @@ export function ChatPanel() {
       </CardContent>
 
       {/* Message Input */}
-      <CardFooter className="border-t px-4 [.border-t]:pt-4 pb-4">
+      <CardFooter className="border-t px-2.5 [.border-t]:pt-4 pb-4">
         <form onSubmit={handleSubmit} className="w-full space-y-2">
           <div className="flex w-full items-end gap-2">
             <div className="flex-1">
@@ -246,7 +246,7 @@ export function ChatPanel() {
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Describe what you're looking for... (e.g., 'red dress for wedding')"
-                className="min-h-10 max-h-[120px] resize-none p-0 pb-2 border-0 focus:ring-0 focus-visible:ring-0 bg-transparent"
+                className="min-h-10 max-h-[120px] resize-none pl-2 pb-2 border-0 focus:ring-0 focus-visible:ring-0 bg-transparent"
               />
             </div>
             <Button
@@ -260,7 +260,7 @@ export function ChatPanel() {
               }
               className="shrink-0"
             >
-              <Send className="h-4 w-4" />
+              <Send className="h-5 w-5" />
             </Button>
           </div>
           <div className="flex justify-between text-xs">
