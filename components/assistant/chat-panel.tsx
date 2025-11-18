@@ -139,7 +139,7 @@ export function ChatPanel() {
   const isOverLimit = message.length > MAX_MESSAGE_LENGTH;
 
   return (
-    <div className="flex h-full flex-col border-l">
+    <div className="flex h-full flex-col">
       {/* Assistant Header */}
       <CardHeader className="border-b p-4">
         <div className="flex items-center space-x-3">

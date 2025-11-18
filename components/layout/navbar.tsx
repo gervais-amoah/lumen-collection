@@ -10,7 +10,7 @@ export function Navbar() {
   const totalItems = useCartStore((state) => state.getTotalItems());
 
   return (
-    <FluidGlass className="my-6 w-4/5 mx-auto">
+    <FluidGlass className="my-6 w-4/5 mx-auto rounded-full px-6">
       <header className="flex items-center justify-between px-4 py-3">
         <Link href="/" className="font-semibold text-lg">
           Lumen Style

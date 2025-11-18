@@ -10,8 +10,10 @@ const links = [
 ] as const;
 const getLinkClass = (isActive: boolean) =>
   cn(
-    "px-4 py-2 rounded bg-muted hover:bg-muted/70",
-    isActive && "bg-blue-600 text-white hover:bg-blue-600"
+    "px-4 py-2 rounded-full font-medium transition-all duration-200",
+    isActive
+      ? "bg-blue-600 text-white shadow-md"
+      : "text-gray-700 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700"
   );
 
 export function ModeToggle() {
@@ -21,18 +23,7 @@ export function ModeToggle() {
   return (
     <div className="flex gap-2">
       {links.map(({ href, label, key }) => (
-        <Link
-          key={key}
-          href={href}
-          className={`
-        px-4 py-2 rounded-lg font-medium transition-all duration-200
-        ${
-          activeKey === key
-            ? "bg-blue-600 text-white shadow-md"
-            : "text-gray-700 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700"
-        }
-      `}
-        >
+        <Link key={key} href={href} className={getLinkClass(activeKey === key)}>
           {label}
         </Link>
       ))}

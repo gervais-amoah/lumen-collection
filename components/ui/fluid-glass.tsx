@@ -19,9 +19,6 @@ export default function FluidGlass({
         border
         border-white/20
         shadow-lg
-        mx-8
-        rounded-full
-        px-6
         ${className}
       `}
       {...props}
