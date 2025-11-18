@@ -7,7 +7,8 @@ import { CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { useProductStore } from "@/store/useProductStore";
-import { Bot, Send } from "lucide-react";
+import { Send } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 // Gemini Flash free tier: 10 RPM / 250 RPD
@@ -144,7 +145,12 @@ export function ChatPanel() {
         <div className="flex items-center space-x-3">
           <Avatar className="h-10 w-10">
             <AvatarFallback className="bg-primary/10 text-primary">
-              <Bot className="h-5 w-5" />
+              <Image
+                src="/images/assistant_avatar.jpg"
+                alt="Assistant Avatar"
+                width={40}
+                height={40}
+              />
             </AvatarFallback>
           </Avatar>
           <div className="flex-1">
@@ -168,8 +174,13 @@ export function ChatPanel() {
       <CardContent className="flex-1 overflow-auto p-4 space-y-4">
         {messages.length === 0 ? (
           <div className="flex h-full items-center justify-center text-center">
-            <div className="space-y-2">
-              <Bot className="h-12 w-12 text-muted-foreground mx-auto" />
+            <div className="flex flex-col items-center space-y-2">
+              <Image
+                src="/images/assistant_avatar.jpg"
+                alt="Assistant Avatar"
+                width={150}
+                height={150}
+              />
               <p className="text-muted-foreground">
                 Start a conversation to begin your styling journey
               </p>

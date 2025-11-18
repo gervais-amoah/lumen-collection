@@ -42,7 +42,7 @@ export default function ClassicPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((p) => (
           <div key={p.id} className="border p-4 rounded shadow-sm">
-            {/* {p.image_url ? (
+            {p.image_url ? (
               <Image
                 src={p.image_url}
                 alt={p.name}
@@ -58,14 +58,7 @@ export default function ClassicPage() {
                 height={300}
                 className="w-full h-48 object-cover mb-4 rounded"
               />
-            )} */}
-            <Image
-              src="/images/placeholder.svg"
-              alt="Placeholder"
-              width={400}
-              height={300}
-              className="w-full h-48 object-cover mb-4 rounded"
-            />
+            )}
             <h2 className="font-semibold text-lg">{p.name}</h2>
             <p className="text-gray-700 mb-2">${p.price.toFixed(2)}</p>
             <p className="text-gray-600 text-sm">{p.description}</p>

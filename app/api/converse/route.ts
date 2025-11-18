@@ -15,7 +15,7 @@ const ConverseRequestSchema = z.object({
         content: z.string(),
       })
     )
-    .max(10)
+    .max(15) // TODO: make this global for frontend/backend
     .default([]),
 });
 
@@ -51,6 +51,7 @@ export async function POST(req: NextRequest) {
     });
 
     // log result for debugging
+    console.log("Conversation history: \n\n", history);
     console.log("Conversation Result send to the frontend: \n\n", result);
 
     return Response.json(result);
