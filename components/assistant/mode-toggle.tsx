@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/", label: "Assistant Mode", key: "assistant" },
+  { href: "/", label: "Assistant Mode ✨", key: "assistant" },
   { href: "/classic", label: "Classic Mode", key: "classic" },
 ] as const;
 const getLinkClass = (isActive: boolean) =>
