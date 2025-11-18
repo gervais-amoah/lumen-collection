@@ -1,5 +1,6 @@
 "use client";
 
+import DarkVeil from "@/components/animation/dark-veil";
 import { ChatPanel } from "@/components/assistant/chat-panel";
 import { WelcomeMessage } from "@/components/assistant/welcome-message";
 import { ProductGrid } from "@/components/common/product-grid";
@@ -22,6 +23,10 @@ export default function WelcomePage() {
       {/* Right Chat Panel */}
       <div className="w-[35%] border-l flex flex-col h-full">
         <ChatPanel />
+      </div>
+
+      <div className="w-full h-full absolute top-0 left-0 pointer-events-none -z-10">
+        <DarkVeil />
       </div>
     </div>
   );

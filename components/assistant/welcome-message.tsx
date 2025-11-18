@@ -12,10 +12,10 @@ export function WelcomeMessage() {
         initialOpacity={0}
       >
         <div className="text-center">
-          <h1 className="font-serif text-4xl md:text-5xl text-gray-900 mb-4">
+          <h1 className="font-serif text-4xl md:text-5xl text-gray-900 dark:text-white mb-4">
             Discover Your Signature Style
           </h1>
-          <p className="font-sans text-base md:text-xl text-gray-700">
+          <p className="font-sans text-base md:text-xl text-gray-700 dark:text-gray-300">
             Let our personal AI stylist guide you through our curated collection
             — find the perfect look effortlessly.
           </p>
