@@ -154,19 +154,25 @@ export function ChatPanel() {
             </AvatarFallback>
           </Avatar>
           <div className="flex-1">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-between gap-2">
               <h3 className="font-serif font-semibold">
-                Eva (Style Assistant)
+                Eva — Style Concierge
               </h3>
-              <Badge
-                variant="secondary"
-                className="bg-green-100 text-green-800 hover:bg-green-100"
-              >
-                Online
-              </Badge>
+              {messagesRemaining <= 0 ? (
+                <Badge variant="destructive" className=" text-red-200">
+                  Session Ended
+                </Badge>
+              ) : (
+                <Badge
+                  variant="secondary"
+                  className="bg-green-100 text-green-800 hover:bg-green-100"
+                >
+                  Online
+                </Badge>
+              )}
             </div>
             <p className="text-sm text-muted-foreground">
-              {messagesRemaining} messages remaining
+              {messagesRemaining} interactions remaining
             </p>
           </div>
         </div>
@@ -180,14 +186,16 @@ export function ChatPanel() {
               <Image
                 src="/images/assistant_avatar.jpg"
                 alt="Assistant Avatar"
+                className=" rounded-4xl"
                 width={150}
                 height={150}
               />
               <p className="font-serif text-muted-foreground">
-                Start a conversation to begin your styling journey
+                Your personal stylist is ready
               </p>
               <p className="font-sans text-xs text-muted-foreground">
-                Ask me about dresses, accessories, or your preferred style!
+                Tell me what you have in mind, and I’ll refine the perfect
+                pieces for your look.
               </p>
             </div>
           </div>
