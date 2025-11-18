@@ -6,15 +6,26 @@ import Link from "next/link";
 import { ModeToggle } from "../assistant/mode-toggle";
 import { Badge } from "../ui/badge";
 import FluidGlass from "../ui/fluid-glass";
+import Image from "next/image";
 
 export function Navbar() {
   const totalItems = useCartStore((state) => state.getTotalItems());
 
   return (
-    <FluidGlass className="my-6 w-4/5 mx-auto rounded-full px-6">
+    <FluidGlass className="my-6 w-4/5 mx-auto rounded-full pl-0 pr-6">
       <header className="flex items-center justify-between px-4 py-3">
-        <Link href="/" className="font-semibold text-lg">
-          Lumen Style
+        <Link
+          href="/"
+          className="font-semibold text-lg flex items-center gap-2"
+        >
+          <Image
+            src="/images/lc-logo-sm.jpeg"
+            alt="Lumen Logo"
+            className=" rounded-full"
+            width={40}
+            height={40}
+          />
+          Lumen Collection
         </Link>
 
         <ModeToggle />
