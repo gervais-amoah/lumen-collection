@@ -16,14 +16,14 @@ export function Navbar() {
       <header className="flex items-center justify-between px-4 py-3">
         <Link
           href="/"
-          className="font-semibold text-lg flex items-center gap-2"
+          className="font-semibold text-lg flex items-center gap-2 hover:[&>img]:scale-115"
         >
           <Image
             src="/images/lc-logo-sm.jpeg"
             alt="Lumen Logo"
-            className=" rounded-full"
-            width={40}
-            height={40}
+            className="rounded-full transition-transform duration-200 "
+            width={35}
+            height={35}
           />
           Lumen Collection
         </Link>
