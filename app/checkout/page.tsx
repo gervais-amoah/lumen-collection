@@ -30,62 +30,62 @@ const CheckoutPage = () => {
               </CardHeader>
               <CardContent>
                 {/* Product List */}
-                {products.length > 0 ? (
-                  products.map((product) => (
-                    <div
-                      key={product.id}
-                      className="flex items-center justify-between py-4"
-                    >
-                      <div className="flex items-center space-x-4">
-                        {/* <img 
-                          src={product.image_url} 
-                          alt={product.name} 
-                          className="w-15 h-20 object-cover rounded-lg" 
-                          onError={(e) => (e.currentTarget.src = '/placeholder-image.jpg')}
-                        /> */}
-                        <Image
-                          src={product.image_url}
-                          alt={product.name}
-                          className="w-15 h-20 object-cover rounded-lg"
-                          onError={(e) =>
-                            (e.currentTarget.src = "/placeholder-image.jpg")
-                          }
-                        />
-                        <div>
-                          <h3 className="font-medium text-gray-900">
-                            {product.name}
-                          </h3>
-                          <p className="text-sm text-gray-500">
-                            {product.size?.[0] && `Size: ${product.size[0]} | `}
-                            {product.color?.[0] && `Color: ${product.color[0]}`}
+                <div className=" h-52 overflow-auto">
+                  {products.length > 0 ? (
+                    products.map((product) => (
+                      <div
+                        key={product.id}
+                        className="flex items-center justify-between py-4"
+                      >
+                        <div className="flex items-center space-x-4">
+                          <Image
+                            src={product.image_url}
+                            alt={product.name}
+                            width={25}
+                            height={40}
+                            className="w-15 h-20 object-cover rounded-lg"
+                            onError={(e) =>
+                              (e.currentTarget.src = "/placeholder-image.jpg")
+                            }
+                          />
+                          <div>
+                            <h3 className="font-medium text-gray-200">
+                              {product.name}
+                            </h3>
+                            <p className="text-sm text-gray-500">
+                              {product.size?.[0] &&
+                                `Size: ${product.size[0]} | `}
+                              {product.color?.[0] &&
+                                `Color: ${product.color[0]}`}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <p className="font-medium text-gray-300">
+                            ${product.price.toFixed(2)}
                           </p>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <p className="font-medium text-gray-900">
-                          ${product.price.toFixed(2)}
-                        </p>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-gray-500 text-center py-4">
-                    No products in cart
-                  </p>
-                )}
+                    ))
+                  ) : (
+                    <p className="text-gray-500 text-center py-4">
+                      No products in cart
+                    </p>
+                  )}
+                </div>
 
                 <Separator className="my-4" />
 
                 {/* Subtotal, Shipping, Total */}
                 <div className="space-y-3">
-                  <div className="flex justify-between text-gray-700">
+                  <div className="flex justify-between text-gray-500">
                     <span>Subtotal</span>
                     <span className="font-medium">
                       $
                       {products.reduce((sum, p) => sum + p.price, 0).toFixed(2)}
                     </span>
                   </div>
-                  <div className="flex justify-between text-gray-700">
+                  <div className="flex justify-between text-gray-500">
                     <span>Shipping</span>
                     <span className="font-medium">Free</span>
                   </div>
@@ -100,7 +100,7 @@ const CheckoutPage = () => {
 
                 {/* Promo Code */}
                 <div className="mt-8">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-500 mb-2">
                     Have a promo code?
                   </label>
                   <div className="flex gap-2">
@@ -126,7 +126,7 @@ const CheckoutPage = () => {
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-gray-500 mb-1">
                       Card Number
                     </label>
                     <Input
@@ -138,7 +138,7 @@ const CheckoutPage = () => {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-gray-500 mb-1">
                         Expiry
                       </label>
                       <Input
@@ -148,7 +148,7 @@ const CheckoutPage = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-gray-500 mb-1">
                         CVV
                       </label>
                       <Input type="text" placeholder="123" className="w-full" />
@@ -156,7 +156,7 @@ const CheckoutPage = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-gray-500 mb-1">
                       Name on Card
                     </label>
                     <Input

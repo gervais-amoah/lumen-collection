@@ -133,13 +133,18 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
             disabled={isAdded}
             className={cn(
               "w-full gap-2 font-semibold transition-all",
-              highlighted
-                ? "bg-linear-to-r from-blue-500 to-green-400 bg-size-[200%_200%] animate-gradient text-white"
+              highlighted && !isAdded
+                ? "bg-background hover:bg-muted text-foreground border-2 border-transparent"
                 : isAdded
                 ? "bg-green-600 hover:bg-green-700 text-white"
-                : "bg-muted hover:bg-muted/70 text-gray-900"
+                : "bg-muted hover:bg-muted/70 text-foreground"
             )}
             size="sm"
+            style={
+              highlighted && !isAdded
+                ? { animation: "borderPulse 2s ease-in-out infinite" }
+                : undefined
+            }
           >
             {isAdded ? (
               <>
