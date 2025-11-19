@@ -58,7 +58,7 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
               src={product.image_url}
               alt={product.name}
               fill
-              className="object-cover transition-transform group-hover:scale-105"
+              className="object-cover object-bottom transition-transform group-hover:scale-105"
             />
           ) : (
             <div className="flex h-full items-center justify-center bg-muted">

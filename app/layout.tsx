@@ -2,6 +2,7 @@ import { Navbar } from "@/components/layout/navbar";
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import SmallScreenWarning from "@/components/ui/small-screen-warning";
 
 // Luxury serif for headings / product names
 const playfair = Playfair_Display({
@@ -38,6 +39,9 @@ export default function RootLayout({
           </div>
           {children}
         </div>
+
+        {/* Show nice text on small devices, like "Please view on a larger screen" */}
+        <SmallScreenWarning />
       </body>
     </html>
   );
