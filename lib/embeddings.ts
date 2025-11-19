@@ -1,3 +1,5 @@
+process.env.USE_WASM = "true";
+
 import { pipeline } from "@xenova/transformers";
 import { EmbeddingPipeline } from "@/types/embeddings";
 
