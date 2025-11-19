@@ -10,6 +10,7 @@ import { useProductStore } from "@/store/useProductStore";
 import { Send } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import TextType from "../TextType";
 
 // Gemini Flash free tier: 10 RPM / 250 RPD
 // Conservative limit to stay within free tier
@@ -193,10 +194,19 @@ export function ChatPanel() {
               <p className="font-serif text-muted-foreground">
                 Your personal stylist is ready
               </p>
-              <p className="font-sans text-xs text-muted-foreground">
-                Tell me what you have in mind, and I’ll refine the perfect
-                pieces for your look.
-              </p>
+              <TextType
+                className="font-sans text-xs text-muted-foreground"
+                text={[
+                  "Share your favorite colors or pieces—we’ll craft your signature style!",
+                  "Event coming up? Let's pick the perfect outfit for the moment!",
+                  "Tell me your vibe and watch me turn it into your ideal look!",
+                ]}
+                typingSpeed={50}
+                deletingSpeed={20}
+                pauseDuration={1500}
+                showCursor={true}
+                cursorCharacter="|"
+              />
             </div>
           </div>
         ) : (

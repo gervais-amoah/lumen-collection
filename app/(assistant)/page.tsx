@@ -11,9 +11,9 @@ export default function WelcomePage() {
   const products = useProductStore((state) => state.products);
 
   return (
-    <div className="flex flex-1 overflow-hidden h-full">
+    <div className="flex flex-1 overflow-hidden h-[calc(100%-120px)] mt-30">
       {/* Left Panel */}
-      <div className="w-[65%] relative overflow-auto p-4 h-full">
+      <div className="w-[65%] relative p-4 pt-0 h-full">
         {products.length === 0 ? (
           <WelcomeMessage />
         ) : (
@@ -22,7 +22,7 @@ export default function WelcomePage() {
       </div>
 
       {/* Right Chat Panel */}
-      <div className="w-[35%] flex flex-col h-[calc(100%-120px)] mt-30 pr-6 pb-6">
+      <div className="w-[35%] flex flex-col pr-6 pb-6">
         <FluidGlass className=" rounded-2xl h-full">
           <ChatPanel />
         </FluidGlass>
