@@ -85,8 +85,8 @@ export default function ClassicPage() {
                 />
               )}
               <h2 className="font-semibold text-lg">{p.name}</h2>
-              <p className="text-gray-700 mb-2">${p.price.toFixed(2)}</p>
-              <p className="text-gray-600 text-sm">{p.description}</p>
+              <p className="text-gray-300 mb-2">${p.price.toFixed(2)}</p>
+              <p className="text-gray-400 text-sm">{p.description}</p>
             </div>
           ))}
         </div>

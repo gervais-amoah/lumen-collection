@@ -10,7 +10,7 @@ import { useProductStore } from "@/store/useProductStore";
 import { Send } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import TextType from "../TextType";
+import TextType from "../animation/TextType";
 
 // Gemini Flash free tier: 10 RPM / 250 RPD
 // Conservative limit to stay within free tier
