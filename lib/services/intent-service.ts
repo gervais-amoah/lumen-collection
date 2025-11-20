@@ -3,7 +3,7 @@ import { geminiClient } from "@/lib/ai/clients/gemini";
 
 export interface IntentResult {
   intent: string; // "" when unclear
-  assistantResponse: string | null; // ask for clarification message
+  assistant_response: string | null; // ask for clarification message
 }
 
 export class IntentService {
@@ -21,7 +21,7 @@ export class IntentService {
 
     return {
       intent: hasNoIntent ? "" : result.query_text.trim().toLowerCase(),
-      assistantResponse: hasNoIntent ? result.assistant_response : null,
+      assistant_response: hasNoIntent ? result.assistant_response : null,
     };
   }
 }

@@ -5,7 +5,7 @@ import { z } from "zod";
 
 const IntentSchema = z.object({
   userMessage: z.string().min(1).max(500),
-  previousQueryText: z.string().optional().default(""),
+  previousIntent: z.string().optional().default(""),
 });
 
 export async function POST(req: NextRequest) {
@@ -14,8 +14,11 @@ export async function POST(req: NextRequest) {
   const intentService = new IntentService();
   const result = await intentService.extractIntent(
     body.userMessage,
-    body.previousQueryText
+    body.previousIntent
   );
+
+  // log the extracted intent
+  console.log("0. Log intent result (from api/intent):\n", result);
 
   return Response.json(result);
 }

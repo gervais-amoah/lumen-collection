@@ -1,6 +1,5 @@
 // lib/vector-search.ts
 import { createClient } from "@supabase/supabase-js";
-// import { embeddingService } from "./embeddings"; // TODO: delete this file if unused
 import { Product } from "@/types/product";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;

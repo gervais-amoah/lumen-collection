@@ -5,9 +5,9 @@ import { NextRequest } from "next/server";
 import { z } from "zod";
 
 const ConverseSchema = z.object({
-  userMessage: z.string().min(1).max(500),
+  userMessage: z.string().min(1).max(200),
   intent: z.string().min(1).max(200),
-  embedding: z.array(z.number()).length(384),
+  embedding: z.array(z.number()).length(256),
   history: z
     .array(
       z.object({
