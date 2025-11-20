@@ -57,7 +57,7 @@ const stylistResponseSchema = z.object({
 
 export class GeminiClient {
   private genAI: GoogleGenAI;
-  private readonly model = "gemini-2.5-flash-lite"; // Do not use "gemini-2.5-flash-lite" for better performance
+  private readonly model = "gemini-2.5-flash-lite"; // For faster response times
 
   constructor(apiKey = process.env.GEMINI_API_KEY!) {
     if (!apiKey) throw new Error("Missing GEMINI_API_KEY");

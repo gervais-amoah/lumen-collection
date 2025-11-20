@@ -3,6 +3,7 @@
 import DarkVeil from "@/components/animation/dark-veil";
 import { ChatPanel } from "@/components/assistant/chat-panel";
 import { WelcomeMessage } from "@/components/assistant/welcome-message";
+import DemoInfoDialog from "@/components/common/demo-dialog";
 import { ProductGrid } from "@/components/common/product-grid";
 import FluidGlass from "@/components/ui/fluid-glass";
 import { useProductStore } from "@/store/useProductStore";
@@ -31,6 +32,8 @@ export default function WelcomePage() {
       <div className="w-full h-full absolute top-0 left-0 pointer-events-none -z-10">
         <DarkVeil />
       </div>
+
+      <DemoInfoDialog />
     </div>
   );
 }

@@ -1,36 +1,147 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧩 Lumen - AI Shopping Assistant
 
-## Getting Started
+> Conversational commerce, reinvented. Stop searching, start describing.
 
-First, run the development server:
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://lumen-collection.vercel.app/)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
+
+![Lumen Interface](/placeholder-hero-screenshot.png)
+
+TL;DR: Lumen is an AI-powered conversational shopping assistant built with Next.js 15, Gemini for intent detection, and Cohere embeddings for semantic product search. Runs fully serverless on Vercel.
+
+This repo is a functional prototype meant as both a demo and a reference implementation for AI-driven conversational commerce.
+
+## The Problem: Shopping Feels Broken
+
+Ever found yourself endlessly scrolling through hundreds of products, trying different search terms, clicking through filters, and still not finding what you actually want?
+
+**Traditional e-commerce makes you do all the work:**
+
+- Guess the right keywords
+- Master complex filter systems
+- Navigate overwhelming catalogs alone
+- Settle for "close enough" results
+
+It's like being in a boutique where everyone ignores you.
+
+## The Solution: Your Personal AI Clerk
+
+Lumen brings back the human touch of in-store shopping through AI. Instead of searching, you **conversationally describe** what you need:
+
+> "I need a summer dress for a beach wedding"  
+> "Something professional but not boring for my presentation"  
+> "Comfy shoes I can walk in all day that still look stylish"
+
+The assistant detects your intent, asks clarifying questions only when needed, and curates product matches.
+
+## 🎥 See the Magic in Action
+
+![Demo Video](/placeholder-demo-video.gif)
+
+_Watch how natural conversation replaces tedious searching_
+
+[**Try Live Demo**](https://lumen-collection.vercel.app/) · [**Video Walkthrough**](/placeholder-full-demo.mp4)
+
+## ⚠️ About This Project
+
+Lumen is an MVP prototype built to demonstrate modern AI capabilities in a shopping context.  
+It is **not a full e-commerce application** — there is no real checkout flow, inventory system, or production-grade merchant tooling.
+
+The goal of this project is to showcase:
+
+- AI intent detection
+- Conversational UX design
+- Semantic product search with vector embeddings
+- Full-stack integration across AI models, database, and UI
+
+Use this as a reference architecture or a technical demonstration, not as a drop-in production solution.
+
+## ✨ How It Works
+
+### 1. Describe Naturally
+
+Tell our AI assistant what you're looking for in plain English—no keywords needed.
+
+### 2. Intelligent Conversation
+
+The AI assistant (powered by Google Gemini) understands your intent and asks smart follow-up questions to refine your preferences if needed.
+
+### 3. Semantic Search
+
+Cohere embeddings find products that match your _meaning_, not just keywords.
+
+### 4. Personalized Curation
+
+Get a hand-picked selection of the most relevant items, with AI explaining why they fit your needs.
+
+![How It Works Diagram](/placeholder-architecture.png)
+
+## 🛠️ Tech Stack
+
+**Frontend:** Next.js 15 · TypeScript · Tailwind CSS · shadcn/ui · React Bits  
+**AI & Search:** Google Gemini (`gemini-2.5-flash-lite`) · Cohere Embeddings (`embed-v4.0`) · Supabase + pgvector  
+**Infrastructure:** Vercel · Serverless Functions  
+**Database:** PostgreSQL · Vector Similarity Search
+
+## 🚀 Quick Start
+
+Run Lumen locally in 5 minutes:
 
 ```bash
+# 1. Clone and install
+git clone https://github.com/gervais-amoah/lumen-style.git
+cd lumen-style
+npm install
+
+# 2. Set up environment variables
+cp .env.example .env.local
+# Add your API keys:
+# GOOGLE_GEMINI_API_KEY=your_key_here
+# COHERE_API_KEY=your_key_here
+# SUPABASE_URL=your_url_here
+# SUPABASE_ANON_KEY=your_key_here
+
+# 3. Set up database (run in Supabase SQL editor)
+CREATE EXTENSION IF NOT EXISTS vector;
+-- Import schema from /docs/schema.sql
+
+# 4. Start developing
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000` and start chatting with your AI stylist!
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛣️ Roadmap
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- [x] Conversational intent detection
+- [x] Semantic product search
+- [x] Recommendation explanation
+- [ ] Multi-merchant support & inventory sync
+- [ ] Advanced style recommendation engine with seasonal trends
+- [ ] AI tool calling (assistant can add to cart, proceed to checkout)
+- [ ] Voice interface for hands-free shopping
+- [ ] Virtual try-on using user photos
+- [ ] Personalized style evolution based on user feedback
 
-## Learn More
+## 🤝 Contributing
 
-To learn more about Next.js, take a look at the following resources:
+PRs and suggestions are welcome! See /docs/contributing.md for guidelines.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 💼 Opportunities
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project demonstrates modern AI/Full-Stack capabilities. Currently exploring new roles in:
 
-## Deploy on Vercel
+- AI Engineering
+- Full-Stack Development
+- Product Engineering
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[Let's connect!](https://www.linkedin.com/in/gervais-amoah/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 License
+
+MIT © 2025 Yao Gervais Amoah
+
+---
+
+**Shopping that understands you..** ✨
