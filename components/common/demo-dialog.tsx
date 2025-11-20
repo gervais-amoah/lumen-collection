@@ -29,7 +29,7 @@ export default function DemoInfoDialog() {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="max-w-md rounded-2xl p-6 backdrop-blur-md bg-white/10 border border-white/20 shadow-xl">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold text-white">
+          <DialogTitle className="text-xl font-serif font-semibold text-white">
             About This Demo
           </DialogTitle>
           <DialogDescription className="mt-2 text-base text-white/80">
