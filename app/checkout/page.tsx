@@ -30,7 +30,7 @@ const CheckoutPage = () => {
               </CardHeader>
               <CardContent>
                 {/* Product List */}
-                <div className=" h-52 overflow-auto">
+                <div className=" h-52 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                   {products.length > 0 ? (
                     products.map((product) => (
                       <div
