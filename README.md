@@ -8,6 +8,10 @@
 
 ![Lumen Interface](/placeholder-hero-screenshot.png)
 
+TL;DR: Lumen is an AI-powered conversational shopping assistant built with Next.js 15, Gemini for intent detection, and Cohere embeddings for semantic product search. Runs fully serverless on Vercel.
+
+This repo is a functional prototype meant as both a demo and a reference implementation for AI-driven conversational commerce.
+
 ## The Problem: Shopping Feels Broken
 
 Ever found yourself endlessly scrolling through hundreds of products, trying different search terms, clicking through filters, and still not finding what you actually want?
@@ -29,7 +33,7 @@ Lumen brings back the human touch of in-store shopping through AI. Instead of se
 > "Something professional but not boring for my presentation"  
 > "Comfy shoes I can walk in all day that still look stylish"
 
-Our AI assistant understands your intent, asks clarifying questions, and curates perfect matches from the catalog—just like a real personal stylist.
+The assistant detects your intent, asks clarifying questions only when needed, and curates product matches.
 
 ## 🎥 See the Magic in Action
 
@@ -37,7 +41,21 @@ Our AI assistant understands your intent, asks clarifying questions, and curates
 
 _Watch how natural conversation replaces tedious searching_
 
-[**Try Live Demo**](https://lumen-demo.vercel.app) · [**Video Walkthrough**](/placeholder-full-demo.mp4)
+[**Try Live Demo**](https://lumen-collection.vercel.app/) · [**Video Walkthrough**](/placeholder-full-demo.mp4)
+
+## ⚠️ About This Project
+
+Lumen is an MVP prototype built to demonstrate modern AI capabilities in a shopping context.  
+It is **not a full e-commerce application** — there is no real checkout flow, inventory system, or production-grade merchant tooling.
+
+The goal of this project is to showcase:
+
+- AI intent detection
+- Conversational UX design
+- Semantic product search with vector embeddings
+- Full-stack integration across AI models, database, and UI
+
+Use this as a reference architecture or a technical demonstration, not as a drop-in production solution.
 
 ## ✨ How It Works
 
@@ -47,7 +65,7 @@ Tell our AI assistant what you're looking for in plain English—no keywords nee
 
 ### 2. Intelligent Conversation
 
-The AI assistant (Gemini here) understands your intent and asks smart follow-up questions to refine your preferences if needed.
+The AI assistant (powered by Google Gemini) understands your intent and asks smart follow-up questions to refine your preferences if needed.
 
 ### 3. Semantic Search
 
@@ -61,8 +79,8 @@ Get a hand-picked selection of the most relevant items, with AI explaining why t
 
 ## 🛠️ Tech Stack
 
-**Frontend:** Next.js 15 · TypeScript · Tailwind CSS · shadcn/ui · React Bits
-**AI & Search:** Google Gemini · Cohere Embeddings · Supabase + pgvector  
+**Frontend:** Next.js 15 · TypeScript · Tailwind CSS · shadcn/ui · React Bits  
+**AI & Search:** Google Gemini (`gemini-2.5-flash-lite`) · Cohere Embeddings (`embed-v4.0`) · Supabase + pgvector  
 **Infrastructure:** Vercel · Serverless Functions  
 **Database:** PostgreSQL · Vector Similarity Search
 
@@ -96,23 +114,19 @@ Visit `http://localhost:3000` and start chatting with your AI stylist!
 
 ## 🛣️ Roadmap
 
-**Near Term (Q2 2026)**
-
+- [x] Conversational intent detection
+- [x] Semantic product search
+- [x] Recommendation explanation
 - [ ] Multi-merchant support & inventory sync
 - [ ] Advanced style recommendation engine with seasonal trends
-- [ ] Outfit building & coordination across categories
-
-**Mid Term (Q3 2026)**
-
 - [ ] AI tool calling (assistant can add to cart, proceed to checkout)
 - [ ] Voice interface for hands-free shopping
-- [ ] Social sharing of curated collections
-
-**Future Vision**
-
 - [ ] Virtual try-on using user photos
-- [ ] AR preview showing how clothing would look on you
 - [ ] Personalized style evolution based on user feedback
+
+## 🤝 Contributing
+
+PRs and suggestions are welcome! See /docs/contributing.md for guidelines.
 
 ## 💼 Opportunities
 
@@ -130,4 +144,4 @@ MIT © 2025 Yao Gervais Amoah
 
 ---
 
-**Stop searching. Start describing.** ✨
+**Shopping that understands you..** ✨
