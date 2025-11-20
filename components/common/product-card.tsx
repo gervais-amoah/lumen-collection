@@ -1,6 +1,5 @@
 "use client";
 
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -35,7 +34,7 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative max-w-sm mx-auto">
       <style>{`
         @keyframes borderPulse {
           0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
@@ -45,14 +44,14 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
 
       <Card
         className={cn(
-          "group overflow-hidden transition-all hover:shadow-lg relative",
+          "group overflow-hidden transition-all hover:shadow-lg relative gap-0 p-0",
           "animate-in fade-in slide-in-from-bottom-4",
-          "duration-500 fill-mode-both p-0 gap-0"
+          "duration-500 fill-mode-both"
         )}
         style={{ animationDelay: `${index * 100}ms` }}
       >
-        {/* Full Background Image */}
-        <AspectRatio ratio={10 / 16} className="relative">
+        {/* Image Section */}
+        <div className="relative aspect-10/12 overflow-hidden">
           {product.image_url ? (
             <Image
               src={product.image_url}
@@ -61,8 +60,8 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
               className="object-cover object-bottom transition-transform group-hover:scale-105"
             />
           ) : (
-            <div className="flex h-full items-center justify-center bg-muted">
-              <span className="text-muted-foreground text-sm">No image</span>
+            <div className="flex h-full items-center justify-center bg-gray-200">
+              <span className="text-gray-500 text-sm">No image</span>
             </div>
           )}
 
@@ -73,107 +72,102 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
                 <Badge
                   key={style}
                   variant="secondary"
-                  className="bg-primary/90 text-primary-foreground hover:bg-primary"
+                  className="bg-blue-600/90 text-white hover:bg-blue-700"
                 >
                   {style}
                 </Badge>
               ))}
             </div>
           )}
+        </div>
 
-          {/* Blurred Content Overlay */}
-          <div className="absolute inset-x-0 bottom-0 z-10">
-            {/* Backdrop blur container */}
-            <div className="relative backdrop-blur-md bg-background/50">
-              <CardContent className="p-4">
-                {/* Product Info */}
-                <div className="flex justify-between">
-                  <div className="mb-3 space-y-2">
-                    <h3 className="font-semibold leading-tight line-clamp-2">
-                      {product.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground line-clamp-1">
-                      {product.brand}
-                    </p>
-                  </div>
-
-                  <span className="text-3xl font-bold text-foreground">
-                    ${product.price}
-                  </span>
-                </div>
-                {/* Sizes and Colors */}
-                <div className="flex justify-between items-center">
-                  {product.color && product.color.length > 0 && (
-                    <div className="flex items-center gap-1">
-                      <div className="flex -space-x-1">
-                        {product.color.slice(0, 3).map((color, i) => (
-                          <div
-                            key={i}
-                            className="h-4 w-4 rounded-full border-2 border-background"
-                            style={{ backgroundColor: color.toLowerCase() }}
-                            title={color}
-                          />
-                        ))}
-                      </div>
-                      {product.color.length > 3 && (
-                        <span className="text-xs text-muted-foreground">
-                          +{product.color.length - 3}
-                        </span>
-                      )}
-                    </div>
-                  )}
-                  {product.size && product.size.length > 0 && (
-                    <div className="flex flex-wrap gap-1">
-                      {product.size.map((size) => (
-                        <Badge key={size} variant="outline" className="text-xs">
-                          {size}
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
-                </div>
-                {/* Description */}
-                {/* {product.description && (
-                  <p className="mb-3 text-sm text-muted-foreground line-clamp-2">
-                    {product.description}
-                  </p>
-                )} */}
-              </CardContent>
-              <CardFooter className="p-4 pt-0">
-                <Button
-                  onClick={handleAddToCart}
-                  disabled={isAdded}
-                  className={cn(
-                    "w-full gap-2 font-semibold transition-all",
-                    highlighted && !isAdded
-                      ? "bg-background hover:bg-muted text-foreground border-2 border-blue-500"
-                      : isAdded
-                      ? "bg-green-600 hover:bg-green-700 text-white"
-                      : "bg-muted hover:bg-muted/70 text-foreground"
-                  )}
-                  size="sm"
-                  style={
-                    highlighted && !isAdded
-                      ? { animation: "borderPulse 2s ease-in-out infinite" }
-                      : undefined
-                  }
-                >
-                  {isAdded ? (
-                    <>
-                      <Check className="h-4 w-4" />
-                      Added to Cart
-                    </>
-                  ) : (
-                    <>
-                      <ShoppingCart className="h-4 w-4" />
-                      Add to Cart
-                    </>
-                  )}
-                </Button>
-              </CardFooter>
+        {/* Content Section */}
+        <CardContent className="p-4">
+          {/* Product Info */}
+          <div className="flex justify-between gap-4 mb-3">
+            <div className="space-y-1 flex-1">
+              <h3 className="font-semibold leading-tight line-clamp-2 text-gray-300">
+                {product.name}
+              </h3>
+              <p className="text-sm text-gray-400 line-clamp-1">
+                {product.brand}
+              </p>
             </div>
+
+            <span className="text-2xl font-bold text-gray-300 whitespace-nowrap">
+              ${product.price}
+            </span>
           </div>
-        </AspectRatio>
+
+          {/* Sizes and Colors */}
+          <div className="flex justify-between items-center gap-3">
+            {product.color && product.color.length > 0 && (
+              <div className="flex items-center gap-1">
+                <div className="flex -space-x-1">
+                  {product.color.slice(0, 3).map((color, i) => (
+                    <div
+                      key={i}
+                      className="h-4 w-4 rounded-full border-2 border-white shadow-sm"
+                      style={{ backgroundColor: color.toLowerCase() }}
+                      title={color}
+                    />
+                  ))}
+                </div>
+                {product.color.length > 3 && (
+                  <span className="text-xs text-gray-400">
+                    +{product.color.length - 3}
+                  </span>
+                )}
+              </div>
+            )}
+            {product.size && product.size.length > 0 && (
+              <div className="flex flex-wrap gap-1">
+                {product.size.map((size) => (
+                  <Badge
+                    key={size}
+                    variant="outline"
+                    className="text-xs border-gray-300 text-gray-700"
+                  >
+                    {size}
+                  </Badge>
+                ))}
+              </div>
+            )}
+          </div>
+        </CardContent>
+
+        <CardFooter className="p-4 pt-0">
+          <Button
+            onClick={handleAddToCart}
+            disabled={isAdded}
+            className={cn(
+              "w-full gap-2 font-semibold transition-all",
+              highlighted && !isAdded
+                ? "bg-background hover:bg-muted text-foreground border-2 border-blue-500"
+                : isAdded
+                ? "bg-green-600 hover:bg-green-700 text-white"
+                : "bg-muted hover:bg-muted/70 text-foreground"
+            )}
+            size="sm"
+            style={
+              highlighted && !isAdded
+                ? { animation: "borderPulse 2s ease-in-out infinite" }
+                : undefined
+            }
+          >
+            {isAdded ? (
+              <>
+                <Check className="h-4 w-4" />
+                Added to Cart
+              </>
+            ) : (
+              <>
+                <ShoppingCart className="h-4 w-4" />
+                Add to Cart
+              </>
+            )}
+          </Button>
+        </CardFooter>
       </Card>
     </div>
   );
