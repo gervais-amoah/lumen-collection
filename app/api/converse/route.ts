@@ -17,6 +17,18 @@ const ConverseSchema = z.object({
     )
     .max(15)
     .default([]),
+  filters: z
+    .object({
+      category: z
+        .enum(["footwear", "accessory", "clothing"])
+        .nullable()
+        .optional(),
+      price_min: z.number().nullable().optional(),
+      price_max: z.number().nullable().optional(),
+      color: z.string().nullable().optional(),
+      occasion: z.string().nullable().optional(),
+    })
+    .optional(),
 });
 
 export async function POST(req: NextRequest) {

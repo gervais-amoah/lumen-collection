@@ -6,6 +6,12 @@ import { z } from "zod";
 const IntentSchema = z.object({
   userMessage: z.string().min(1).max(500),
   previousIntent: z.string().optional().default(""),
+  history: z.array(
+    z.object({
+      role: z.enum(["user", "assistant"]),
+      content: z.string(),
+    })
+  ),
 });
 
 export async function POST(req: NextRequest) {
@@ -14,7 +20,8 @@ export async function POST(req: NextRequest) {
   const intentService = new IntentService();
   const result = await intentService.extractIntent(
     body.userMessage,
-    body.previousIntent
+    body.previousIntent,
+    body.history
   );
 
   // log the extracted intent

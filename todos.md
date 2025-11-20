@@ -1,4 +1,4 @@
-# AI Shop Assistant MVP - Progress Tracker
+# AI Shop Assistant: MVP - Progress Tracker
 
 ## ✅ **DONE**
 
@@ -73,3 +73,29 @@ Start gathering your proof of work: experiments, builds, prototypes, or creative
 
 Show us what you’ve built.
 ```
+
+---
+
+USER: Hello
+
+ASSISTANT: Hi there! What can I help you find today?
+
+USER: I'm looking for jacket
+
+ASSISTANT: Sure! Are you looking for a specific type of jacket, like a denim jacket, a blazer, or a puffer jacket?
+
+USER: Anything will do.
+
+ASSISTANT: Since anything will do, let's start with a classic that's always a good choice. The Mira Denim Bomber is a versatile layering piece, perfect for cool weather and pairs well with almost anything. Its mid-weight denim and quilted lining make it both stylish and practical.
+
+USER: It's pretty expensive. How something cheaper?
+
+ASSISTANT: I understand! Let's look at some more budget-friendly options. The Zara Tote with Fringe is a stylish and practical choice at $85. It's a large tote made of soft leather, perfect for carrying your essentials in style. It would be a great everyday bag!
+
+USER: That is not a jacket
+
+ASSISTANT: My apologies! You're absolutely right, the Zara Tote with Fringe is a handbag, not a jacket. Let me get back to jacket options for you. The Mira Denim Bomber is a great casual choice at $130, and the Clara Wool Blazer offers a more polished look for $145. Both are fantastic layering pieces!
+
+USER: Are those all the jackets you have?
+
+ASSISTANT: Yes, those are all the jacket options currently available! We have the casual Mira Denim Bomber, the classic Clara Wool Blazer, and the timeless Trench Coat. Would you like to explore any of these further?

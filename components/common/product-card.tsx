@@ -69,11 +69,7 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
           {product.style && product.style.length > 0 && (
             <div className="absolute left-3 top-3 flex flex-wrap gap-1 z-10">
               {product.style.slice(0, 2).map((style) => (
-                <Badge
-                  key={style}
-                  variant="secondary"
-                  className="bg-blue-600/90 text-white hover:bg-blue-700"
-                >
+                <Badge key={style} variant="secondary">
                   {style}
                 </Badge>
               ))}
@@ -126,7 +122,7 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
                   <Badge
                     key={size}
                     variant="outline"
-                    className="text-xs border-gray-300 text-gray-700"
+                    className="text-xs border-gray-300 "
                   >
                     {size}
                   </Badge>
