@@ -1,4 +1,4 @@
-# 🧩 AI Shop Assistant MVP Specification
+# 🧩 Lumen Collection: AI Shop Assistant MVP Specification
 
 _For Block Builder Fellowship Submission_
 
@@ -247,7 +247,7 @@ Avoids redundant embedding/vector DB calls.
 
 ---
 
-If you understand your role, answer with a todo list and I will tell you what to do.
+If you understand your role, just answer with "Got it."
 
 # These are for me (Gev)
 
