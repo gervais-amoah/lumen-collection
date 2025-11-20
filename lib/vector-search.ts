@@ -18,6 +18,19 @@ export async function semanticSearch(
       match_count: limit,
     });
 
+    // if (filters.category) {
+    //   products = products.filter(p => p.category === filters.category);
+    // }
+    // if (filters.price_max !== undefined) {
+    //   products = products.filter(p => p.price <= filters.price_max);
+    // }
+    // if (filters.price_min !== undefined) {
+    //   products = products.filter(p => p.price >= filters.price_min);
+    // }
+    // if (filters.color) {
+    //   products = products.filter(p => p.color?.toLowerCase() === filters.color.toLowerCase());
+    // }
+
     if (error) {
       console.error("Supabase RPC error:", error);
       throw error;
