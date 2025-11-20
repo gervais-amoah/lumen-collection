@@ -29,6 +29,12 @@ export interface ProcessMessageParams {
   history: ChatMessage[];
 }
 
+export type GeminiRole = "user" | "model";
+export interface GeminiFormattedMessage {
+  role: GeminiRole;
+  parts: { text: string }[];
+}
+
 export interface ConversationResult {
   assistant_response: string;
   highlighted_product_id?: string | null;
