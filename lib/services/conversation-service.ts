@@ -15,6 +15,13 @@ export interface PersonalizationParams {
   intent: string;
   embedding: number[];
   history: ChatMessage[];
+  filters?: {
+    category?: "footwear" | "accessory" | "clothing" | null;
+    price_min?: number | null;
+    price_max?: number | null;
+    color?: string | null;
+    occasion?: string | null;
+  };
 }
 
 export class ConversationService {
@@ -23,13 +30,13 @@ export class ConversationService {
   async personalize(
     params: PersonalizationParams
   ): Promise<ConversationResult> {
-    const { userMessage, intent, embedding, history } = params;
+    const { userMessage, intent, embedding, history, filters } = params;
 
     if (history.length >= this.MAX_CONVERSATION_LENGTH) {
       return this.handleConversationEnd(intent);
     }
 
-    const search = await this.searchProducts(intent, embedding);
+    const search = await this.searchProducts(intent, embedding, filters);
 
     const personalizedReply = await this.generatePersonalizedResponse(
       userMessage,
@@ -59,7 +66,8 @@ export class ConversationService {
 
   private async searchProducts(
     intent: string,
-    embedding: number[]
+    embedding: number[],
+    filters?: PersonalizationParams["filters"]
   ): Promise<{ products: Product[]; cache_hit: boolean }> {
     const cached = getCachedResults(intent);
     if (cached) {
@@ -67,7 +75,7 @@ export class ConversationService {
     }
 
     // Now the search uses the embedding, not the intent string
-    const products = await semanticSearch(embedding);
+    const products = await semanticSearch(embedding, filters);
 
     if (products.length > 0) {
       setCachedResults(intent, products);

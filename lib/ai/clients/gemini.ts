@@ -70,7 +70,11 @@ export class GeminiClient {
       return JSON.parse(result) as SearchIntentResult;
     } catch (error) {
       console.error("Gemini getSearchIntent Error:", error);
-      return { assistant_response: "", query_text: "" };
+      return {
+        intent: "",
+        assistant_response: "Sorry, I'm having trouble understanding you.",
+        filters: { category: null },
+      };
     }
   }
 

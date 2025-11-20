@@ -64,6 +64,7 @@ export function useAssistant() {
       setPreviousIntent(intentData.intent);
       setIsUnderstandingIntent(false);
       setIsFetchingRecommendations(true);
+      const filters = intentData.filters || {};
 
       // 2️⃣ Embed intent (client-side)
       // const embedding = await embedText(intentData.intent);
@@ -96,6 +97,7 @@ export function useAssistant() {
           intent: intentData.intent,
           history: currentHistory, // Send the full, updated history
           embedding, // Renamed from 'embedding' for consistency
+          filters,
         }),
       });
       const converseData = await converseRes.json();
