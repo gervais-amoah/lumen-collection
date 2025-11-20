@@ -4,69 +4,31 @@ import { ConversationService } from "@/lib/services/conversation-service";
 import { NextRequest } from "next/server";
 import { z } from "zod";
 
-// Input validation schema
-const ConverseRequestSchema = z.object({
-  userMessage: z.string().min(1).max(500),
-  previousQueryText: z.string().max(200).optional().default(""),
+const ConverseSchema = z.object({
+  userMessage: z.string().min(1).max(200),
+  intent: z.string().min(1).max(200),
+  embedding: z.array(z.number()).length(256),
   history: z
     .array(
       z.object({
-        role: z.string(),
+        role: z.enum(["user", "assistant"]),
         content: z.string(),
       })
     )
-    .max(15) // TODO: make this global for frontend/backend
+    .max(15)
     .default([]),
 });
 
 export async function POST(req: NextRequest) {
-  try {
-    const rateLimitResult = await rateLimit.check(req);
-    if (!rateLimitResult.success) {
-      return Response.json({ error: "Too many requests" }, { status: 429 });
-    }
-
-    // Validate input
-    const rawBody = await req.json();
-    const validationResult = ConverseRequestSchema.safeParse(rawBody);
-
-    if (!validationResult.success) {
-      return Response.json(
-        {
-          error: "Invalid request data",
-          details: validationResult.error.issues,
-        },
-        { status: 400 }
-      );
-    }
-
-    const { userMessage, previousQueryText, history } = validationResult.data;
-
-    // Use service layer for business logic
-    const conversationService = new ConversationService();
-    const result = await conversationService.processMessage({
-      userMessage,
-      previousQueryText,
-      history,
-    });
-
-    // log result for debugging
-    console.log("Conversation history: \n\n", history);
-    console.log("Conversation Result send to the frontend: \n\n", result);
-
-    return Response.json(result);
-  } catch (error) {
-    console.error("API Error:", error);
-
-    // Don't expose internal errors to clients
-    return Response.json(
-      {
-        assistant_response:
-          "I'm having trouble processing your request. Please try again in a moment.",
-        products: [],
-        error: true,
-      },
-      { status: 500 }
-    );
+  const rate = await rateLimit.check(req);
+  if (!rate.success) {
+    return Response.json({ error: "Too many requests" }, { status: 429 });
   }
+
+  const body = ConverseSchema.parse(await req.json());
+
+  const service = new ConversationService();
+  const result = await service.personalize(body);
+
+  return Response.json(result);
 }

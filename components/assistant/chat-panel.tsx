@@ -1,34 +1,40 @@
 "use client";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
+// components/assistant/chat-panel.tsx
+
 import { Button } from "@/components/ui/button";
-import { CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { CardContent, CardFooter } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  MAX_MESSAGE_LENGTH,
+  MAX_MESSAGES_PER_SESSION,
+  useAssistant,
+} from "@/hooks/useAssistant";
 import { cn } from "@/lib/utils";
 import { useProductStore } from "@/store/useProductStore";
 import { Send } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import TextType from "../animation/TextType";
+import { useEffect, useRef } from "react";
+import TextType from "../animation/TextType"; // Assuming this path
+import ChatHeader from "./chat-header";
 
-// Gemini Flash free tier: 10 RPM / 250 RPD
-// Conservative limit to stay within free tier
-const MAX_MESSAGE_LENGTH = 200; // Characters
-const MAX_MESSAGES_PER_SESSION = 15; // Prevent excessive usage
+// NOTE: MAX_MESSAGE_LENGTH and MAX_MESSAGES_PER_SESSION are now imported from the hook file.
 
 export function ChatPanel() {
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState<
-    { role: "user" | "assistant"; content: string }[]
-  >([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const {
+    messages,
+    sendMessage,
+    isLoading,
+    currentInput,
+    setCurrentInput,
+    messagesRemaining,
+  } = useAssistant();
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Product store actions
   const setProducts = useProductStore((state) => state.setProducts);
-
   const setHighlighted = useProductStore(
     (state) => state.setHighlightedProduct
   );
@@ -46,85 +52,45 @@ export function ChatPanel() {
   // Auto-resize textarea
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = "56px"; // Reset height
       textareaRef.current.style.height = `${Math.min(
         textareaRef.current.scrollHeight,
         120
       )}px`;
     }
-  }, [message]);
+  }, [currentInput]); // Use currentInput instead of message
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent | React.KeyboardEvent) => {
     e.preventDefault();
 
+    const userMessage = currentInput.trim();
+
     if (
-      !message.trim() ||
+      !userMessage ||
       isLoading ||
       messages.length >= MAX_MESSAGES_PER_SESSION ||
-      message.length > MAX_MESSAGE_LENGTH
+      userMessage.length > MAX_MESSAGE_LENGTH
     )
       return;
 
-    const userMessage = message.trim();
-    setMessage("");
-    setIsLoading(true);
+    // The hook handles setting the user message, clearing the input, and setting loading state
+    const result = await sendMessage(userMessage);
 
-    // Add user message to chat
-    setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
-
-    try {
-      // return checkSupabaseHealth();
-      // TODO: Replace with actual API call
-      const response = await fetch("/api/converse", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userMessage,
-          history: messages,
-        }),
-      });
-
-      const data = await response.json();
-
-      // log data for debugging
-      console.log("ChatPanel received data: \n\n", data);
-
-      // Add assistant response to chat
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: data.assistant_response,
-        },
-      ]);
-
-      // update products display logic can go here
-      if (data.products && data.products.length > 0) {
-        console.log("Products returned:", data.products);
-        setProducts(data.products);
+    // Update product store after receiving the result from the hook
+    if (result) {
+      if (result.products.length > 0) {
+        setProducts(result.products);
       }
-
-      if (data.highlighted_product_id) {
-        setHighlighted(data.highlighted_product_id);
+      if (result.highlightedId) {
+        setHighlighted(result.highlightedId);
       }
-    } catch (error) {
-      console.error("Chat error:", error);
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: "Sorry, I'm having trouble connecting. Please try again.",
-        },
-      ]);
-    } finally {
-      setIsLoading(false);
+    }
 
-      // Only focus if user can still send messages (not at session limit)
-      if (messages.length < MAX_MESSAGES_PER_SESSION) {
-        setTimeout(() => {
-          textareaRef.current?.focus();
-        }, 0);
-      }
+    // Only focus if user can still send messages (not at session limit)
+    if (messages.length < MAX_MESSAGES_PER_SESSION) {
+      setTimeout(() => {
+        textareaRef.current?.focus();
+      }, 0);
     }
   };
 
@@ -135,51 +101,18 @@ export function ChatPanel() {
     }
   };
 
-  const charactersRemaining = MAX_MESSAGE_LENGTH - message.length;
-  const messagesRemaining = MAX_MESSAGES_PER_SESSION - messages.length;
-  const isOverLimit = message.length > MAX_MESSAGE_LENGTH;
+  const charactersRemaining = MAX_MESSAGE_LENGTH - currentInput.length;
+  const isOverLimit = currentInput.length > MAX_MESSAGE_LENGTH;
+  const isSessionEnded = messagesRemaining <= 0;
 
   return (
     <div className="flex h-full flex-col">
-      {/* Assistant Header */}
-      <CardHeader className="border-b p-4">
-        <div className="flex items-center space-x-3">
-          <Avatar className="h-10 w-10">
-            <AvatarFallback className="bg-primary/10 text-primary">
-              <Image
-                src="/images/assistant_avatar.jpg"
-                alt="Assistant Avatar"
-                width={40}
-                height={40}
-              />
-            </AvatarFallback>
-          </Avatar>
-          <div className="flex-1">
-            <div className="flex items-center justify-between gap-2">
-              <h3 className="font-serif font-semibold">
-                Eva — Style Concierge
-              </h3>
-              {messagesRemaining <= 0 ? (
-                <Badge variant="destructive" className=" text-red-200">
-                  Session Ended
-                </Badge>
-              ) : (
-                <Badge
-                  variant="secondary"
-                  className="bg-green-100 text-green-800 hover:bg-green-100"
-                >
-                  Online
-                </Badge>
-              )}
-            </div>
-            <p className="text-sm text-muted-foreground">
-              {messagesRemaining} interactions remaining
-            </p>
-          </div>
-        </div>
-      </CardHeader>
+      <ChatHeader
+        messagesRemaining={messagesRemaining}
+        isSessionActive={!isSessionEnded}
+      />
 
-      {/* Chat Messages Area */}
+      {/* 2. Chat Messages Area - Refactoring Target */}
       <CardContent className="flex-1 overflow-auto p-4 space-y-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
         {messages.length === 0 ? (
           <div className="flex h-full items-center justify-center text-center">
@@ -245,28 +178,29 @@ export function ChatPanel() {
         <div ref={messagesEndRef} />
       </CardContent>
 
-      {/* Message Input */}
+      {/* 3. Message Input/Footer - Refactoring Target */}
       <CardFooter className="border-t px-2.5 [.border-t]:pt-4 pb-4">
         <form onSubmit={handleSubmit} className="w-full space-y-2">
           <div className="flex w-full items-end gap-2">
             <div className="flex-1">
               <Textarea
                 ref={textareaRef}
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
+                value={currentInput}
+                onChange={(e) => setCurrentInput(e.target.value)}
                 onKeyDown={handleKeyDown}
+                disabled={isLoading || isSessionEnded}
                 placeholder="Describe what you're looking for... (e.g., 'red dress for wedding')"
-                className="min-h-10 max-h-[120px] resize-none pl-2 pb-2 border-0 focus:ring-0 focus-visible:ring-0 bg-transparent"
+                className="min-h-14 max-h-[120px] resize-none pl-2 pb-2 border-0 focus:ring-0 focus-visible:ring-0 bg-transparent"
               />
             </div>
             <Button
               type="submit"
               size="icon"
               disabled={
-                !message.trim() ||
+                !currentInput.trim() ||
                 isLoading ||
-                message.length > MAX_MESSAGE_LENGTH ||
-                messages.length >= MAX_MESSAGES_PER_SESSION
+                currentInput.length > MAX_MESSAGE_LENGTH ||
+                isSessionEnded
               }
               className="shrink-0"
             >
@@ -278,7 +212,9 @@ export function ChatPanel() {
               className={isOverLimit ? "text-red-500" : "text-muted-foreground"}
             >
               {isOverLimit
-                ? `${message.length - MAX_MESSAGE_LENGTH} characters over limit`
+                ? `${
+                    currentInput.length - MAX_MESSAGE_LENGTH
+                  } characters over limit`
                 : `${charactersRemaining} characters left`}
             </span>
           </div>

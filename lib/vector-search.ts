@@ -1,25 +1,16 @@
 // lib/vector-search.ts
 import { createClient } from "@supabase/supabase-js";
-import { embeddingService } from "./embeddings";
 import { Product } from "@/types/product";
 
-// const supabase = createClient(
-//   process.env.NEXT_PUBLIC_SUPABASE_URL!,
-//   process.env.SUPABASE_SERVICE_ROLE_KEY!
-// );
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function semanticSearch(
-  query: string,
+  embedding: number[],
   limit: number = 6
 ): Promise<Product[]> {
   try {
-    // Generate embedding for the query - MOCK FOR NOW
-    // const embedding = await embeddingService.generateEmbeddingMock(query);
-    const embedding = await embeddingService.generateEmbedding(query);
-
     // Search Supabase using vector similarity
     const { data: products, error } = await supabase.rpc("match_products", {
       query_embedding: embedding,
