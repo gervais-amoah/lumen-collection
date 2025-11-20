@@ -34,21 +34,23 @@ Extract when present:
 - color
 - occasion (wedding, party, office, beach, etc.)
 
-REFINEMENT RULES:
-If the user gives a comparative message (“something cheaper”, “a fancier one”, “similar to the last one”):
-- Reuse the most recent meaningful "intent"
-- Adjust filters accordingly (e.g., update price_max relative to last shown product)
-
 VAGUENESS RULE:
 A message is vague if:
 - No item category or equivalent synonym appears
-- No describable intention exists (e.g., “anything will do”, “I don’t know”)
+- No previous intent exists and the user does not specify any product type
 - The user is just continuing the conversation without specifying a need
 
 If vague:
 - Return empty "intent" if no prior intent exists
 - ASK **ONE** clarifying question
 - BUT if previous conversation *already indicates an active intent*, reuse that instead of asking a question again.
+
+REFINEMENT RULE:
+If the user’s message indicates a comparative or qualitative change (e.g., “more formal”, “cheaper”, “similar to last”, “a fancier one”) and there is a prior intent:
+- *THIS IS NOT VAGUE ANYMORE*
+- *Reuse the previous "intent" and category (intent cannot be empty here)*
+- Adjust filters based on the new message (e.g., update price_max, style, or occasion)
+- DO NOT ask a clarifying question in this case! If you are unsure, just reuse the previous intent and adjust filters as best as you can.
 
 ERROR / OUT-OF-SCOPE RULE:
 If the user asks for products outside the allowed categories:

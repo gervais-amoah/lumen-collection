@@ -65,6 +65,13 @@ export class GeminiClient {
       formatedHistory
     );
 
+    /*
+Hello. I'm looking for a nice dress i can wear for my brother's wedding. Something elegant
+
+What about something more formal?
+
+    */
+
     try {
       const result = await this.generate(prompt);
       return JSON.parse(result) as SearchIntentResult;
