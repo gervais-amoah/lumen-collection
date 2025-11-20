@@ -15,6 +15,7 @@ export function optimizeProductForAI(products: Product[]): OptimizedProduct[] {
     style: product.style,
     material: product.material,
     occasion: product.occasion,
+    size: product.size,
     description: product.description, // Keep but truncate if needed
   }));
 }
