@@ -41,9 +41,22 @@ export class GeminiClient {
 
   async getSearchIntent(
     userMessage: string,
-    previousQueryText: string
+    previousQueryText: string,
+    history: { role: "user" | "assistant"; content: string }[]
   ): Promise<SearchIntentResult> {
-    const prompt = getSearchIntentPrompt(userMessage, previousQueryText);
+    const formatedHistory = history
+      .map(
+        (msg) =>
+          `${msg.role === "user" ? "USER" : "ASSISTANT"} MESSAGE: "${
+            msg.content
+          }"`
+      )
+      .join("\n");
+    const prompt = getSearchIntentPrompt(
+      userMessage,
+      previousQueryText,
+      formatedHistory
+    );
 
     try {
       const result = await this.generate(prompt);

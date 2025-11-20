@@ -1,11 +1,16 @@
 export const getSearchIntentPrompt = (
   userMessage: string,
-  previousQueryText?: string
+  previousQueryText?: string,
+  history?: string
 ) => `
 You are a boutique shopping assistant. Your ONLY job is to understand the shopper’s intent and extract a searchable fashion query.
 
 USER MESSAGE: "${userMessage}"
 PREVIOUS SEARCH QUERY TEXT: ${previousQueryText || "none"}
+PREVIOUS MESSAGES:
+"""
+${history || "none"}
+"""
 
 RULES:
 1. **On-Topic & Searchable**: If the message contains specific fashion attributes (colors, styles, types, occasions, budgets) OR refines a previous search → extract accurate search query.

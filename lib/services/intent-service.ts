@@ -9,11 +9,13 @@ export interface IntentResult {
 export class IntentService {
   async extractIntent(
     userMessage: string,
-    previousQueryText = ""
+    previousQueryText = "",
+    history: { role: "user" | "assistant"; content: string }[] = []
   ): Promise<IntentResult> {
     const result = await geminiClient.getSearchIntent(
       userMessage,
-      previousQueryText
+      previousQueryText,
+      history
     );
 
     const hasNoIntent =
