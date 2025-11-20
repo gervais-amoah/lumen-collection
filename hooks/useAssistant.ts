@@ -11,7 +11,12 @@ export const MAX_MESSAGES_PER_SESSION = 15;
 
 export function useAssistant() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  const [isUnderstandingIntent, setIsUnderstandingIntent] = useState(false);
+  const [isFetchingRecommendations, setIsFetchingRecommendations] =
+    useState(false);
+  const isLoading = isUnderstandingIntent || isFetchingRecommendations;
+
   const [previousIntent, setPreviousIntent] = useState<string>("");
   // Separate state for the user's message input
   const [currentInput, setCurrentInput] = useState("");
@@ -24,7 +29,7 @@ export function useAssistant() {
 
     // Add user message immediately
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
-    setIsLoading(true);
+    setIsUnderstandingIntent(true);
     setCurrentInput(""); // Clear input when sending
 
     try {
@@ -57,6 +62,8 @@ export function useAssistant() {
       }
 
       setPreviousIntent(intentData.intent);
+      setIsUnderstandingIntent(false);
+      setIsFetchingRecommendations(true);
 
       // 2️⃣ Embed intent (client-side)
       // const embedding = await embedText(intentData.intent);
@@ -97,6 +104,7 @@ export function useAssistant() {
         ...prev,
         { role: "assistant", content: converseData.assistant_response },
       ]);
+      setIsFetchingRecommendations(false);
 
       // Return products and highlighted ID for external state management (e.g., Zustand store)
       return {
@@ -115,7 +123,8 @@ export function useAssistant() {
       ]);
       return { products: [] };
     } finally {
-      setIsLoading(false);
+      setIsUnderstandingIntent(false);
+      setIsFetchingRecommendations(false);
     }
   };
 
@@ -123,6 +132,8 @@ export function useAssistant() {
     messages,
     sendMessage,
     isLoading,
+    isUnderstandingIntent,
+    isFetchingRecommendations,
     currentInput,
     setCurrentInput,
     messagesRemaining: MAX_MESSAGES_PER_SESSION - messages.length,

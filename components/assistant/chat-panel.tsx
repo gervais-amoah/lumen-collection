@@ -15,6 +15,7 @@ import { useProductStore } from "@/store/useProductStore";
 import { Send } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import ShinyText from "../animation/shiny-text";
 import TextType from "../animation/TextType"; // Assuming this path
 import ChatHeader from "./chat-header";
 
@@ -25,6 +26,8 @@ export function ChatPanel() {
     messages,
     sendMessage,
     isLoading,
+    isUnderstandingIntent,
+    isFetchingRecommendations,
     currentInput,
     setCurrentInput,
     messagesRemaining,
@@ -164,17 +167,19 @@ export function ChatPanel() {
             </div>
           ))
         )}
-        {isLoading && (
-          <div className="flex gap-3 max-w-[85%] mr-auto">
-            <div className="flex items-center rounded-lg bg-muted px-3 py-2 text-sm">
-              <div className="flex space-x-1">
-                <div className="h-2 w-2 animate-bounce rounded-full bg-muted-foreground"></div>
-                <div className="h-2 w-2 animate-bounce rounded-full bg-muted-foreground [animation-delay:-0.3s]"></div>
-                <div className="h-2 w-2 animate-bounce rounded-full bg-muted-foreground [animation-delay:-0.5s]"></div>
-              </div>
-            </div>
-          </div>
+
+        {isUnderstandingIntent && (
+          <ShinyText text="Understanding your style..." className="mt-2" />
         )}
+        {isFetchingRecommendations && (
+          <ShinyText
+            text="Fetching personalized recommendations..."
+            className="mt-2"
+          />
+        )}
+
+        {/* isUnderstandingIntent
+        isFetchingRecommendations */}
         <div ref={messagesEndRef} />
       </CardContent>
 
