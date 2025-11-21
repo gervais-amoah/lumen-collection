@@ -20,7 +20,7 @@ export function Navbar() {
         <header className="flex items-center justify-between px-4 py-3">
           <button
             onClick={() => setAboutOpen(true)}
-            className="font-semibold text-lg hover:[&>img]:scale-115 cursor-pointer transition-all flex items-center gap-2 "
+            className="font-semibold font-serif text-lg hover:[&>img]:scale-115 cursor-pointer transition-all flex items-center gap-2 "
           >
             <Image
               src="/images/lc-logo-sm.jpeg"
