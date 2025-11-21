@@ -46,11 +46,6 @@ export function useAssistant() {
         }),
       });
       const intentData = await intentRes.json();
-      // log the extracted intent
-      console.log(
-        "1. Log intent result (from frontend useAssitant hook):\n",
-        intentData
-      );
 
       if (!intentData.intent) {
         // Show clarification message
