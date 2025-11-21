@@ -1,4 +1,4 @@
-# 🧩 Lumen - AI Shopping Assistant
+# ✨ Lumen - The Shop that understands you
 
 > Conversational commerce, reinvented. Stop searching, start describing.
 
@@ -6,7 +6,8 @@
 [![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
 
-![Lumen Interface](/placeholder-hero-screenshot.png)
+<img width="1440" height="800" alt="Screenshot 2025-11-21 024855" src="https://github.com/user-attachments/assets/50d6a20a-ce0b-4be5-b303-68cf32ea8fd4" />
+
 
 TL;DR: Lumen is an AI-powered conversational shopping assistant built with Next.js 15, Gemini for intent detection, and Cohere embeddings for semantic product search. Runs fully serverless on Vercel.
 
@@ -37,11 +38,16 @@ The assistant detects your intent, asks clarifying questions only when needed, a
 
 ## 🎥 See the Magic in Action
 
-![Demo Video](/placeholder-demo-video.gif)
+![Demo GIF](https://github.com/user-attachments/assets/021a9a9c-f14d-4ced-b0c4-e8389f3214c5)
+
+
+https://github.com/user-attachments/assets/7fa5e69e-eddd-47ef-8558-20dca8dc6da1
 
 _Watch how natural conversation replaces tedious searching_
 
-[**Try Live Demo**](https://lumen-collection.vercel.app/) · [**Video Walkthrough**](/placeholder-full-demo.mp4)
+[**Try Live Demo**](https://lumen-collection.vercel.app/) 
+
+<!--- YouTube Video Walk-through:  · [**Video Walkthrough**](/placeholder-full-demo.mp4) -->
 
 ## ⚠️ About This Project
 
@@ -75,7 +81,7 @@ Cohere embeddings find products that match your _meaning_, not just keywords.
 
 Get a hand-picked selection of the most relevant items, with AI explaining why they fit your needs.
 
-![How It Works Diagram](/placeholder-architecture.png)
+<!--- Diagram: ![How It Works Diagram](/placeholder-architecture.png) -->
 
 ## 🛠️ Tech Stack
 
@@ -121,7 +127,6 @@ Visit `http://localhost:3000` and start chatting with your AI stylist!
 - [ ] AI tool calling (assistant can add to cart, proceed to checkout)
 - [ ] Voice interface for hands-free shopping
 - [ ] Virtual try-on using user photos
-- [ ] Personalized style evolution based on user feedback
 
 ## 🤝 Contributing
 
@@ -140,7 +145,3 @@ This project demonstrates modern AI/Full-Stack capabilities. Currently exploring
 ## 📄 License
 
 MIT © 2025 Yao Gervais Amoah
-
----
-
-**Shopping that understands you..** ✨
