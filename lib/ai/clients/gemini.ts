@@ -80,23 +80,12 @@ export class GeminiClient {
         contents: contents,
         config: config,
       });
-      console.log(
-        "\n\n***********\n\n",
-        "Gemini raw response:\n",
-        response,
-        "\n\n***********\n\n"
-      );
 
       const rawText = response?.text?.trim() ?? "";
       return this.cleanJSONResponse(rawText);
     } catch (error) {
       console.error("Gemini generate Error:", error);
       throw error;
-    } finally {
-      console.log(
-        "*************\nContents to Gemini:\n",
-        JSON.stringify(contents, null, 2)
-      );
     }
   }
 
@@ -172,19 +161,10 @@ What about something more formal? / It looks a bit formal too me
 
     try {
       const result = await this.generate(systemPrompt, formatedHistory);
-      console.log(
-        "\n\n***********\n\n",
-        "Gemini personalized cleaned result:\n",
-        JSON.stringify(result, null, 2),
-        "\n\n***********\n\n"
-      );
+
       return JSON.parse(result) as PersonalizedReplyResult;
     } catch (error) {
       console.error("Gemini personalization error:", error);
-      console.error("\n\n***********\n\n");
-      // console.log("System Prompt:\n", systemPrompt);
-      console.log("Chat History:\n", JSON.stringify(formatedHistory));
-      console.log("\n\n***********\n\n");
       return {
         assistant_response:
           "Sorry, I'm having trouble generating a personalized response.",

@@ -24,8 +24,5 @@ export async function POST(req: NextRequest) {
     body.history
   );
 
-  // log the extracted intent
-  console.log("0. Log intent result (from api/intent):\n", result);
-
   return Response.json(result);
 }

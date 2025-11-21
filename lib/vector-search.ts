@@ -55,15 +55,6 @@ export async function semanticSearch(
       }
     }
 
-    const foundedProductsLog = products
-      .map((p) => {
-        return `ID: ${p.id}| Name: ${p.name}| Price: ${p.price}| Category: ${p.category}`;
-      })
-      .join(", ");
-
-    console.log(`Found ${products?.length || 0} products`);
-    console.log(`Products: ${foundedProductsLog}`);
-    console.log(`Found filtered ${filteredProducts?.length || 0} products`);
     return filteredProducts || [];
   } catch (error) {
     console.error("Vector search error:", error);

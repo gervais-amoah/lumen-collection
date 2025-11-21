@@ -37,7 +37,6 @@ export async function POST(req: NextRequest) {
     const data: CohereEmbedResponse = await response.json();
 
     const embedding = data.embeddings?.float?.[0];
-    console.log("Cohere generated embedding length:", embedding?.length);
 
     if (!embedding) {
       return NextResponse.json(
