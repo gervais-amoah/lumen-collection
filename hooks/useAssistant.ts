@@ -38,7 +38,6 @@ export function useAssistant() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         // Pass full history to /api/intent for context-aware intent extraction
-        // TODO: Should send the previous intents as well
         body: JSON.stringify({
           userMessage,
           history: messages,
