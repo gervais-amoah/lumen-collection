@@ -34,7 +34,7 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
   };
 
   return (
-    <div className="relative max-w-sm mx-auto">
+    <div className="relative w-full mx-auto">
       <style>{`
         @keyframes borderPulse {
           0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }

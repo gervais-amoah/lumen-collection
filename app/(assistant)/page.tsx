@@ -12,7 +12,7 @@ export default function WelcomePage() {
   const products = useProductStore((state) => state.products);
 
   return (
-    <div className="flex flex-1 overflow-hidden h-[calc(100%-120px)] mt-30">
+    <div className="flex flex-1 overflow-hidden h-[calc(100%-120px)] max-w-7xl mx-auto mt-30">
       {/* Left Panel */}
       <div className="w-[65%] relative p-4 pt-0 h-full">
         {products.length === 0 ? (
