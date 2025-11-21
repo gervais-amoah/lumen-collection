@@ -137,6 +137,7 @@ PRs and suggestions are welcome! See /docs/contributing.md for guidelines.
 This project demonstrates modern AI/Full-Stack capabilities. Currently exploring new roles in:
 
 - AI Engineering
+- UI/Front-end Development
 - Full-Stack Development
 - Product Engineering
 
