@@ -117,7 +117,6 @@ Visit `http://localhost:3000` and start chatting with your AI stylist!
 - [x] Conversational intent detection
 - [x] Semantic product search
 - [x] Recommendation explanation
-- [ ] Multi-merchant support & inventory sync
 - [ ] Advanced style recommendation engine with seasonal trends
 - [ ] AI tool calling (assistant can add to cart, proceed to checkout)
 - [ ] Voice interface for hands-free shopping

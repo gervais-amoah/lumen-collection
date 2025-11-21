@@ -1,5 +1,5 @@
-import { create } from "zustand";
 import { Product } from "@/types/product";
+import { create } from "zustand";
 
 interface ProductStore {
   products: Product[];
