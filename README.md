@@ -1,4 +1,4 @@
-# ✨ Lumen - The Shop that understands you
+# ✨ Lumen - The Shop That Understands You
 
 > Conversational commerce, reinvented. Stop searching, start describing.
 
