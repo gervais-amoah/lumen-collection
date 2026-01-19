@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { liteClient as algoliasearch } from "algoliasearch/lite";
 import { InstantSearch, Chat } from "react-instantsearch";
 import Search from "@/components/search";
+import DropdownSearchExperience from "@/components/dropdown-search";
 interface Product {
   id: string;
   name: string;
@@ -70,9 +71,9 @@ export default function ClassicPage() {
         />
       </div>
       <div className="p-8">
-        <div>
+        <div className="flex gap-4">
           <h1 className="text-2xl font-bold mb-6">Classic Product List</h1>
-          <div id="algolia_chat">
+          <div id="algolia_chat" className=" w-3/5">
             {/* <InstantSearch
               indexName="instant_search"
               searchClient={searchClient}
@@ -80,7 +81,7 @@ export default function ClassicPage() {
               <Chat agentId="8f7c4a2d-3b1e-4d5f-9a6c-e2b1f5d0c3e9" />
             </InstantSearch> */}
 
-            <Search
+            <DropdownSearchExperience
               applicationId={applicationId}
               apiKey={apiKey}
               indexName={indexName}
