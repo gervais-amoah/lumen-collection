@@ -13,7 +13,7 @@ const getLinkClass = (isActive: boolean) =>
     "px-4 py-2 rounded-full font-medium transition-all duration-200",
     isActive
       ? "bg-blue-600 text-white shadow-md"
-      : "text-gray-700 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700"
+      : "text-gray-700 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700",
   );
 
 export function ModeToggle() {
@@ -21,7 +21,7 @@ export function ModeToggle() {
   const activeKey = pathname === "/classic" ? "classic" : "assistant";
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 absolute left-1/2 transform -translate-x-1/2">
       {links.map(({ href, label, key }) => (
         <Link key={key} href={href} className={getLinkClass(activeKey === key)}>
           {label}

@@ -1,12 +1,9 @@
 "use client";
 
 import ShinyText from "@/components/animation/shiny-text";
+import DropdownSearchExperience from "@/components/dropdown-search";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { liteClient as algoliasearch } from "algoliasearch/lite";
-import { InstantSearch, Chat } from "react-instantsearch";
-import Search from "@/components/search";
-import DropdownSearchExperience from "@/components/dropdown-search";
 interface Product {
   id: string;
   name: string;
