@@ -1,8 +1,8 @@
 import { Navbar } from "@/components/layout/navbar";
+import SmallScreenWarning from "@/components/ui/small-screen-warning";
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import SmallScreenWarning from "@/components/ui/small-screen-warning";
 
 // Luxury serif for headings / product names
 const playfair = Playfair_Display({

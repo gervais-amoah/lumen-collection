@@ -3,7 +3,9 @@
 import ShinyText from "@/components/animation/shiny-text";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-
+import { liteClient as algoliasearch } from "algoliasearch/lite";
+import { InstantSearch, Chat } from "react-instantsearch";
+import Search from "@/components/search";
 interface Product {
   id: string;
   name: string;
@@ -11,6 +13,11 @@ interface Product {
   description: string;
   image_url?: string;
 }
+
+// Algolia application ID and search-only API key
+const applicationId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!;
+const apiKey = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY!;
+const indexName = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME!;
 
 export default function ClassicPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -63,7 +70,32 @@ export default function ClassicPage() {
         />
       </div>
       <div className="p-8">
-        <h1 className="text-2xl font-bold mb-6">Classic Product List</h1>
+        <div>
+          <h1 className="text-2xl font-bold mb-6">Classic Product List</h1>
+          <div id="algolia_chat">
+            {/* <InstantSearch
+              indexName="instant_search"
+              searchClient={searchClient}
+            >
+              <Chat agentId="8f7c4a2d-3b1e-4d5f-9a6c-e2b1f5d0c3e9" />
+            </InstantSearch> */}
+
+            <Search
+              applicationId={applicationId}
+              apiKey={apiKey}
+              indexName={indexName}
+              attributes={{
+                primaryText: "name", // the attribute to display in the hits list
+                secondaryText: "description", // the secondary attribute to display in the hits list
+                tertiaryText: "brand", // the tertiary attribute to display in the hits list
+                url: "url", // the URL of the hit
+                image: "image_url", // the image URL of the hit
+              }}
+              // darkMode={false}
+            />
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((p) => (
             <div key={p.id} className="border p-4 rounded shadow-sm">
