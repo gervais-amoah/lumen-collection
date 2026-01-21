@@ -9,7 +9,7 @@ export function ChatSearchItem({ item }: { item: any }) {
 
   return (
     <div className="group bg-white dark:bg-[#0a0a0a] rounded-lg shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 max-w-sm mr-2">
-      <div className="relative w-full h-52 bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-900 overflow-hidden">
+      <div className="relative w-full h-40 bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-900 overflow-hidden">
         {/* Image */}
         {item.image_url ? (
           <img
