@@ -34,14 +34,18 @@ export function Navbar() {
 
           <ModeToggle />
 
-          <nav className="flex items-center gap-4">
-            <Link href="/checkout" aria-label="Cart" className="relative">
+          <div className="flex items-center gap-4">
+            <Link
+              href="/checkout"
+              aria-label="Cart"
+              className="relative hover:bg-accent-foreground/10 p-2 rounded-full transition"
+            >
               <ShoppingCart className="w-6 h-6" />
-              <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-2 -right-2">
+              <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums absolute -top-1 -right-1">
                 {totalItems}
               </Badge>
             </Link>
-          </nav>
+          </div>
         </header>
       </FluidGlass>
 

@@ -122,6 +122,7 @@ export default function ClassicPage() {
                 "style",
                 "color",
                 "objectID",
+                "image_url",
               ]}
               attributesToSnippet={["name", "description"]}
               snippetEllipsisText="…"
