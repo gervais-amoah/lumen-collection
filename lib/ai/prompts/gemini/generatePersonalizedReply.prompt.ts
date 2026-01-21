@@ -1,9 +1,8 @@
-import { ChatMessage } from "@/types/chat";
 import { OptimizedProduct } from "@/types/product";
 
 export const getPersonalizedReplyPrompt = (
   // userMessage: string,
-  products: OptimizedProduct[]
+  products: OptimizedProduct[],
   // chatHistory: string
 ) => `
 You are a personal fashion stylist for a luxury boutique. Your role is to provide tailored product recommendations and styling advice based on user preferences and available products.
@@ -64,7 +63,7 @@ ${products
     (p, index) => `
 ${index + 1}. ${p.name} - ${p.color} - ${p.material} - $${p.price} - ID: ${
       p.id
-    }`
+    }`,
   )
   .join("\n")}
 

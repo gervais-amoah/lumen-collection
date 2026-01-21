@@ -4,6 +4,12 @@ import ShinyText from "@/components/animation/shiny-text";
 import DropdownSearchExperience from "@/components/dropdown-search";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { liteClient as algoliasearch } from "algoliasearch/lite";
+import { InstantSearch, Chat, Configure } from "react-instantsearch";
+// import "instantsearch.css/components/chat.css";
+import "../../components/instantsearch.css/components/chat.scss";
+import { ChatSearchItem } from "@/components/algolia-search/ChatSearchItem";
+
 interface Product {
   id: string;
   name: string;
@@ -16,6 +22,13 @@ interface Product {
 const applicationId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!;
 const apiKey = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY!;
 const indexName = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME!;
+
+const agentAppId = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_APP_ID!;
+const agentApiKey = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_API_KEY!;
+const agentId = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_ID!;
+const agentIndexName = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_INDEX_NAME!;
+
+const searchClient = algoliasearch(agentAppId, agentApiKey);
 
 export default function ClassicPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -69,7 +82,6 @@ export default function ClassicPage() {
       </div>
       <div className="p-8">
         <div className="flex gap-4">
-          <h1 className="text-2xl font-bold mb-6">Classic Product List</h1>
           <div id="algolia_chat" className=" w-3/5">
             {/* <InstantSearch
               indexName="instant_search"
@@ -92,6 +104,51 @@ export default function ClassicPage() {
               // darkMode={false}
             />
           </div>
+        </div>
+
+        <div>
+          <InstantSearch searchClient={searchClient} indexName={agentIndexName}>
+            <Configure
+              hitsPerPage={10}
+              attributesToRetrieve={[
+                "name",
+                "description",
+                "brand",
+                "category",
+                "size",
+                "material",
+                "price",
+                "occasion",
+                "style",
+                "color",
+                "objectID",
+              ]}
+              attributesToSnippet={["name", "description"]}
+              snippetEllipsisText="…"
+            />
+            <Chat
+              agentId={agentId}
+              itemComponent={({ item }: { item: any }) => (
+                <ChatSearchItem item={item} />
+              )}
+              // tools={{
+              // addToCart: {
+              //   layoutComponent: ({
+              //     // the current message for the tool
+              //     message,
+              //     // the current InstantSearch UI state (query, page, refinements, etc.)
+              //     indexUiState,
+              //     // function to update the InstantSearch UI state
+              //     setIndexUiState,
+              //     // function to add a result from the tool to the chat
+              //     addToolResult,
+              //   }) => <div>Tool: addToCart</div>,
+              //   onToolCall: ({ addToolResult }) =>
+              //     addToolResult({ output: { text: "result" } }),
+              // },
+              // }}
+            />
+          </InstantSearch>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
