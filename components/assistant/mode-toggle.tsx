@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
@@ -18,7 +18,7 @@ const getLinkClass = (isActive: boolean) =>
 
 export function ModeToggle() {
   const pathname = usePathname();
-  const activeKey = pathname === "/classic" ? "classic" : "assistant";
+  const activeKey = pathname.startsWith("/classic") ? "classic" : "assistant";
 
   return (
     <div className="flex gap-2 absolute left-1/2 transform -translate-x-1/2">
