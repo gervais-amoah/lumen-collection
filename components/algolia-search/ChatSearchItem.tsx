@@ -10,7 +10,7 @@ export const ChatSearchItem = React.memo(function ChatSearchItem({
 }: {
   item: any;
 }) {
-  console.log("ChatSearchItem rendering with item:\n\n", JSON.stringify(item));
+  // console.log("ChatSearchItem rendering with item:\n\n", JSON.stringify(item));
 
   const hasColors = item.color && item.color.length > 0;
   const hasSizes = item.size && item.size.length > 0;
@@ -68,54 +68,6 @@ export const ChatSearchItem = React.memo(function ChatSearchItem({
               <span className="text-xs text-gray-700 dark:text-gray-300 font-medium truncate">
                 {item.material}
               </span>
-            </div>
-          )}
-
-          {/* Colors */}
-          {hasColors && (
-            <div className="flex items-center gap-1">
-              <span className="text-gray-500 dark:text-gray-400 text-xs">
-                Colors:
-              </span>
-              <div className="flex gap-1">
-                {item.color!.slice(0, 3).map((color, index) => (
-                  <div
-                    key={index}
-                    className="w-3 h-3 rounded-full border border-gray-300 dark:border-gray-600"
-                    style={{ backgroundColor: color }}
-                    title={color}
-                  />
-                ))}
-                {item.color!.length > 3 && (
-                  <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
-                    +{item.color!.length - 3}
-                  </span>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Sizes */}
-          {hasSizes && (
-            <div className="flex items-center gap-1">
-              <span className="text-gray-500 dark:text-gray-400 text-xs">
-                Sizes:
-              </span>
-              <div className="flex gap-1">
-                {item.size!.slice(0, 3).map((size, index) => (
-                  <span
-                    key={index}
-                    className="text-xs text-gray-700 dark:text-gray-300 font-medium truncate border border-gray-300 dark:border-gray-600 px-1 rounded-sm"
-                  >
-                    {size}
-                  </span>
-                ))}
-                {item.size!.length > 3 && (
-                  <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
-                    +{item.size!.length - 3}
-                  </span>
-                )}
-              </div>
             </div>
           )}
 
