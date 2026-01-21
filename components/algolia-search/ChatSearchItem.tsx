@@ -1,7 +1,13 @@
 // ChatSearchItem.tsx
 "use client";
 
-export function ChatSearchItem({ item }: { item: any }) {
+import React from "react";
+
+export const ChatSearchItem = React.memo(function ChatSearchItem({
+  item,
+}: {
+  item: any;
+}) {
   console.log("ChatSearchItem rendering with item:\n\n", JSON.stringify(item));
 
   const hasColors = item.color && item.color.length > 0;
@@ -114,4 +120,4 @@ export function ChatSearchItem({ item }: { item: any }) {
       </div>
     </div>
   );
-}
+});

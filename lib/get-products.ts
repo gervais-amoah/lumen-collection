@@ -23,3 +23,14 @@ export async function fetchProducts(filters: {
   if (error) throw new Error(error.message);
   return data;
 }
+
+export async function fetchProductDetails(productId: string) {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("id", productId)
+    .single();
+
+  if (error) throw new Error(error.message);
+  return data;
+}

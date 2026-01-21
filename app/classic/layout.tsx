@@ -55,9 +55,6 @@ export default function ClassicLayout({
           />
           <Chat
             agentId={agentId}
-            getSearchPageURL={({ query }) =>
-              `${window.location.origin}/classic/search?q=${encodeURIComponent(query)}`
-            }
             itemComponent={({ item }: { item: any }) => (
               <ChatSearchItem item={item} />
             )}
