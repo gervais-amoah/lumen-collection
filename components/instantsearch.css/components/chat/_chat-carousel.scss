@@ -20,6 +20,10 @@
     font-weight: var(--ais-font-weight-semibold);
   }
 
+  button.ais-ChatToolSearchIndexCarouselHeaderViewAll {
+    display: none !important; // Hide "View All" button, CUSTOM STYLE
+  }
+
   .ais-ChatToolSearchIndexCarouselHeaderViewAll {
     svg {
       width: calc(var(--ais-icon-size) * 0.8);
