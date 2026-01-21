@@ -1,6 +1,8 @@
 // ChatSearchItem.tsx
 "use client";
 
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 export const ChatSearchItem = React.memo(function ChatSearchItem({
@@ -116,6 +118,15 @@ export const ChatSearchItem = React.memo(function ChatSearchItem({
               </div>
             </div>
           )}
+
+          {/* devider */}
+          <div className="w-full border-t border-gray-200 dark:border-gray-700 mt-2" />
+          <Link href={item.url} target="_blank" rel="noopener noreferrer">
+            <span>
+              View Details
+              <ArrowRight className="inline-block w-4 h-4 ml-1 text-blue-600 dark:text-blue-400 group-hover:translate-x-1 transition-transform duration-200" />
+            </span>
+          </Link>
         </div>
       </div>
     </div>

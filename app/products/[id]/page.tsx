@@ -145,7 +145,7 @@ export default async function ProductPage({
 
               {/* Add to Cart */}
               <div className="mt-8 pt-6 border-t border-gray-800">
-                <button className="w-full py-4 px-6 bg-linear-to-r from-blue-800 to-indigo-500 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2">
+                <button className="w-full py-4 px-6 bg-linear-to-r from-blue-900 to-indigo-700 hover:from-blue-700 hover:to-indigo-600 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2 cursor-pointer">
                   <ShoppingCart className="w-5 h-5" />
                   Add to Cart
                 </button>
