@@ -1,19 +1,20 @@
+/* eslint-disable @next/next/no-img-element */
 // ChatSearchItem.tsx
 "use client";
 
+import { AlgoliaProduct } from "@/types/product";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
+interface ChatSearchItemProps {
+  item: AlgoliaProduct;
+}
+
 export const ChatSearchItem = React.memo(function ChatSearchItem({
   item,
-}: {
-  item: any;
-}) {
+}: ChatSearchItemProps) {
   // console.log("ChatSearchItem rendering with item:\n\n", JSON.stringify(item));
-
-  const hasColors = item.color && item.color.length > 0;
-  const hasSizes = item.size && item.size.length > 0;
 
   return (
     <div className="group bg-white dark:bg-[#0a0a0a] rounded-lg shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-500 max-w-sm mr-2">
@@ -23,7 +24,7 @@ export const ChatSearchItem = React.memo(function ChatSearchItem({
           <img
             src={item.image_url}
             alt={item.name}
-            className="!w-full !h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full! h-full! object-cover group-hover:scale-105 transition-transform duration-300"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">

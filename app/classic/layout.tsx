@@ -2,6 +2,7 @@
 
 // app/classic/layout.tsx
 import { ChatSearchItem } from "@/components/algolia-search/ChatSearchItem";
+import { AlgoliaProduct } from "@/types/product";
 import { liteClient as algoliasearch } from "algoliasearch/lite";
 import { Inter } from "next/font/google";
 import React from "react";
@@ -24,11 +25,9 @@ export default function ClassicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-linear-to-br from-purple-950 to-gray-950 text-gray-100">
+    <div className="bg-linear-to-br from-purple-950 to-gray-950 text-gray-100 font-sans pt-22 pb-12 min-h-screen h-full ">
       {/* Main content with padding to avoid header overlap */}
-      <main
-        className={`${inter.variable} w-4/5 max-w-7xl mx-auto  font-sans pt-22 pb-12 min-h-screen h-full  `}
-      >
+      <main className={`${inter.variable} w-4/5 max-w-7xl mx-auto `}>
         {children}
       </main>
 
@@ -55,12 +54,19 @@ export default function ClassicLayout({
           />
           <Chat
             agentId={agentId}
-            itemComponent={({ item }: { item: any }) => (
-              <ChatSearchItem item={item} />
+            itemComponent={({ item }) => (
+              <ChatSearchItem item={item as unknown as AlgoliaProduct} />
             )}
           />
         </InstantSearch>
       </div>
+
+      <footer>
+        <div className="w-full py-6 px-48 border-t border-gray-800 text-sm text-gray-500">
+          &copy; {new Date().getFullYear()} Lumen Collection. All rights
+          reserved.
+        </div>
+      </footer>
     </div>
   );
 }
