@@ -54,6 +54,15 @@ export default function ClassicLayout({
           />
           <Chat
             agentId={agentId}
+            title="Maya • Chat"
+            translations={{
+              header: {
+                title: "Maya • Chat",
+                closeLabel: "Close chat",
+                // ...
+              },
+              // ...
+            }}
             itemComponent={({ item }) => (
               <ChatSearchItem item={item as unknown as AlgoliaProduct} />
             )}
