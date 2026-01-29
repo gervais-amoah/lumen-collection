@@ -1,6 +1,5 @@
 "use client";
 
-import { liteClient as algoliasearch } from "algoliasearch/lite";
 import {
   InstantSearch,
   SearchBox,
@@ -10,11 +9,7 @@ import {
 } from "react-instantsearch";
 import { useSearchParams } from "next/navigation";
 import { SearchHit } from "@/components/algolia-search/SearchHit";
-
-const agentAppId = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_APP_ID!;
-const agentApiKey = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_API_KEY!;
-
-const searchClient = algoliasearch(agentAppId, agentApiKey);
+import { ALGOLIA_CONFIG, searchClient } from "@/lib/algolia";
 
 function Hit({ hit }: { hit: any }) {
   return (
@@ -48,9 +43,9 @@ export default function SearchPage() {
 
         <InstantSearch
           searchClient={searchClient}
-          indexName={process.env.NEXT_PUBLIC_ALGOLIA_AGENT_INDEX_NAME!}
+          indexName={ALGOLIA_CONFIG.agentIndexName}
           initialUiState={{
-            [process.env.NEXT_PUBLIC_ALGOLIA_AGENT_INDEX_NAME!]: {
+            [ALGOLIA_CONFIG.agentIndexName]: {
               query,
             },
           }}

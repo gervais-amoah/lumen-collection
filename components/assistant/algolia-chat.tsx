@@ -1,17 +1,10 @@
+import { ALGOLIA_CONFIG, searchClient } from "@/lib/algolia";
 import { Product } from "@/types/product";
-import { liteClient as algoliasearch } from "algoliasearch/lite";
 import Image from "next/image";
 import { Chat, Configure, InstantSearch } from "react-instantsearch";
 import ShinyText from "../animation/shiny-text";
 import { ProductCard } from "../common/product-card";
 import "../instantsearch.css/components/chat.scss";
-
-const agentAppId = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_APP_ID!;
-const agentApiKey = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_API_KEY!;
-const agentId = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_ID!;
-const agentIndexName = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_INDEX_NAME!;
-
-const searchClient = algoliasearch(agentAppId, agentApiKey);
 
 export default function AlgoliaChat() {
   return (
@@ -54,7 +47,10 @@ export default function AlgoliaChat() {
         [&_.ais-ChatMessage-message_.ais-Carousel]:after:content-none!
         "
     >
-      <InstantSearch searchClient={searchClient} indexName={agentIndexName}>
+      <InstantSearch
+        searchClient={searchClient}
+        indexName={ALGOLIA_CONFIG.agentIndexName}
+      >
         {/* Adding 'isolate' helps create a clean stacking context 
             where children are preferred for clicks. 
         */}
@@ -80,7 +76,7 @@ export default function AlgoliaChat() {
           />
 
           <Chat
-            agentId={agentId}
+            agentId={ALGOLIA_CONFIG.agentId}
             title="Maya • Assistant Mode"
             translations={{
               header: {

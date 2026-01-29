@@ -2,22 +2,14 @@
 
 // app/classic/layout.tsx
 import { ChatSearchItem } from "@/components/algolia-search/ChatSearchItem";
+import { ALGOLIA_CONFIG, searchClient } from "@/lib/algolia";
 import { AlgoliaProduct } from "@/types/product";
-import { liteClient as algoliasearch } from "algoliasearch/lite";
 import { Inter } from "next/font/google";
 import React from "react";
 import { Chat, Configure, InstantSearch } from "react-instantsearch";
 import "../../components/instantsearch.css/components/chat.scss";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-
-// Algolia application ID and search-only API key
-const agentAppId = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_APP_ID!;
-const agentApiKey = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_API_KEY!;
-const agentId = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_ID!;
-const agentIndexName = process.env.NEXT_PUBLIC_ALGOLIA_AGENT_INDEX_NAME!;
-
-const searchClient = algoliasearch(agentAppId, agentApiKey);
 
 export default function ClassicLayout({
   children,
@@ -34,7 +26,10 @@ export default function ClassicLayout({
       </main>
 
       <div>
-        <InstantSearch searchClient={searchClient} indexName={agentIndexName}>
+        <InstantSearch
+          searchClient={searchClient}
+          indexName={ALGOLIA_CONFIG.agentIndexName}
+        >
           <Configure
             hitsPerPage={10}
             attributesToRetrieve={[
@@ -55,7 +50,7 @@ export default function ClassicLayout({
             snippetEllipsisText="…"
           />
           <Chat
-            agentId={agentId}
+            agentId={ALGOLIA_CONFIG.agentId}
             title="Maya • Chat"
             translations={{
               header: {

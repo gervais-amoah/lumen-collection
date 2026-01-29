@@ -1,9 +1,5 @@
-// /lib/products.ts
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!; // or service role key if needed
-const supabase = createClient(supabaseUrl, supabaseKey);
+// /lib/get-products
+import { supabase } from "./supabase";
 
 export async function fetchProducts(filters: {
   category?: string;

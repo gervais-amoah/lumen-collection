@@ -2,6 +2,7 @@
 
 import ShinyText from "@/components/animation/shiny-text";
 import DropdownSearchExperience from "@/components/dropdown-search";
+import { ALGOLIA_CONFIG } from "@/lib/algolia";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -12,11 +13,6 @@ interface Product {
   description: string;
   image_url?: string;
 }
-
-// Algolia application ID and search-only API key
-const applicationId = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID!;
-const apiKey = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY!;
-const indexName = process.env.NEXT_PUBLIC_ALGOLIA_INDEX_NAME!;
 
 export default function ClassicPage() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -42,13 +38,13 @@ export default function ClassicPage() {
 
   if (loading)
     return (
-      <div className="absolute top-0 left-0 ring-0 bottom-0 w-full -z-10 min-h-screen flex justify-center items-center gap-2.5 bg-[#161616]">
+      <div className="w-full min-h-screen flex justify-center items-center gap-4">
         <Image
           src="/images/lc-logo-md.jpeg"
           alt="Classic Collection Hero"
-          width={224}
-          height={224}
-          className="w-56 h-56 object-cover"
+          width={10}
+          height={10}
+          className="w-56 h-56 object-cover rounded-full border-4 border-gray-800 shadow-2xl shadow-gray-900/50"
         />
 
         <ShinyText text="Loading products..." speed={4} className="text-2xl" />
@@ -60,9 +56,9 @@ export default function ClassicPage() {
     <div className="md:p-8">
       <div id="algolia_chat" className="mx-auto my-6 w-3/5">
         <DropdownSearchExperience
-          applicationId={applicationId}
-          apiKey={apiKey}
-          indexName={indexName}
+          applicationId={ALGOLIA_CONFIG.appId}
+          apiKey={ALGOLIA_CONFIG.apiKey}
+          indexName={ALGOLIA_CONFIG.indexName}
           attributes={{
             primaryText: "name", // the attribute to display in the hits list
             secondaryText: "description", // the secondary attribute to display in the hits list
