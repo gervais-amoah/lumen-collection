@@ -5,12 +5,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { href: "/", label: "Assistant Mode ✨", key: "assistant" },
-  { href: "/classic", label: "Classic Mode", key: "classic" },
+  {
+    href: "/",
+    label: "Assistant Mode ✨",
+    smLabel: "Assistant",
+    key: "assistant",
+  },
+  { href: "/classic", label: "Classic Mode", smLabel: "Mode", key: "classic" },
 ] as const;
+
 const getLinkClass = (isActive: boolean) =>
   cn(
-    "px-4 py-2 rounded-full font-medium transition-all duration-200",
+    "px-2 md:px-4 py-1 md:py-2 rounded-full text-sm md:text-base font-medium transition-all duration-200",
     isActive
       ? "bg-blue-600 text-white shadow-md"
       : "text-gray-700 hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700",
@@ -21,11 +27,18 @@ export function ModeToggle() {
   const activeKey = pathname.startsWith("/classic") ? "classic" : "assistant";
 
   return (
-    <div className="flex gap-2 absolute left-1/2 transform -translate-x-1/2">
-      {links.map(({ href, label, key }) => (
-        <Link key={key} href={href} className={getLinkClass(activeKey === key)}>
-          {label}
-        </Link>
+    <div className="flex gap-0.5 md:gap-2 rounded-full border border-gray/30 p-1 absolute left-1/2 transform -translate-x-1/2">
+      {links.map(({ href, label, smLabel, key }) => (
+        <>
+          <Link
+            key={key}
+            href={href}
+            className={getLinkClass(activeKey === key)}
+          >
+            <span className="hidden md:block">{label}</span>
+            <span className="block md:hidden">{smLabel}</span>
+          </Link>
+        </>
       ))}
     </div>
   );

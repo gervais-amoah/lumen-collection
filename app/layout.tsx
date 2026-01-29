@@ -41,7 +41,7 @@ export default function RootLayout({
         </div>
 
         {/* Show nice text on small devices, like "Please view on a larger screen" */}
-        <SmallScreenWarning />
+        {/* <SmallScreenWarning /> */}
       </body>
     </html>
   );

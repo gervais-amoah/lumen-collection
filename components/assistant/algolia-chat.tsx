@@ -96,7 +96,6 @@ export default function AlgoliaChat() {
                 product={item as unknown as Product}
                 index={Number()}
               />
-              // {ProductCard}
             )}
             classNames={{
               header: {
@@ -115,7 +114,6 @@ export default function AlgoliaChat() {
                 height={35}
               />
             )}
-            // messagesErrorComponent={function}
             messagesLoaderComponent={() => (
               <ShinyText text="Curating some picks you'll love..." />
             )}
