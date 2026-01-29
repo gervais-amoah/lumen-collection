@@ -100,13 +100,11 @@ export default function AlgoliaChat() {
             )}
             classNames={{
               header: {
+                clear: "hidden!",
                 close: "hidden!",
                 maximize: "hidden!",
               },
             }}
-            // Other props to further customize the chat can be added here
-            // headerCloseIconComponent={() => <div />}
-            // headerMaximizeIconComponent={() => <div />}
             headerMinimizeIconComponent={() => <div />}
             headerTitleIconComponent={() => (
               <Image
@@ -121,7 +119,6 @@ export default function AlgoliaChat() {
             messagesLoaderComponent={() => (
               <ShinyText text="Curating some picks you'll love..." />
             )}
-            // toggleButtonIconComponent={function}
           />
         </div>
       </InstantSearch>
