@@ -217,7 +217,7 @@
     margin-top: auto;
   }
 
-  @media (max-width: variables.$ais-chat-breakpoint) {
+  @media (min-width: variables.$ais-chat-breakpoint) {
     .ais-ChatToolSearchIndexCarouselHeaderScrollButtons {
       display: none;
     }

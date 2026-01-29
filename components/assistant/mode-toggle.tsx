@@ -27,7 +27,7 @@ export function ModeToggle() {
   const activeKey = pathname.startsWith("/classic") ? "classic" : "assistant";
 
   return (
-    <div className="flex gap-0.5 md:gap-2 rounded-full border border-gray/30 p-1 absolute left-1/2 transform -translate-x-1/2">
+    <div className="flex gap-0.5 md:gap-2 rounded-full border border-gray/30 p-1 md:p-1.5 absolute left-1/2 transform -translate-x-1/2">
       {links.map(({ href, label, smLabel, key }) => (
         <>
           <Link

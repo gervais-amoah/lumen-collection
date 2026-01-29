@@ -7,9 +7,9 @@ import FluidGlass from "@/components/ui/fluid-glass";
 
 export default function WelcomePage() {
   return (
-    <div className="overflow-hidden h-[calc(100%-90px)] md:h-[calc(100%-120px)] w-full max-w-[1320px] mx-auto mt-24 md:mt-30">
+    <div className="overflow-hidden h-[calc(100%-90px)] lg:h-[calc(100%-120px)] w-full max-w-[1320px] mx-auto mt-24 lg:mt-30">
       {/* Main Chat Panel */}
-      <div className="flex pb-6 w-[calc(100%_-_40px)] md:w-4/5 h-full mx-auto">
+      <div className="flex pb-6 w-[calc(100%_-_40px)] lg:w-4/5 h-full mx-auto">
         <FluidGlass className="w-full rounded-2xl h-full">
           <AlgoliaChat />
         </FluidGlass>

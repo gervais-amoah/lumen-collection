@@ -16,7 +16,7 @@ export function Navbar() {
 
   return (
     <>
-      <FluidGlass className="my-3 md:my-6 w-[calc(100%_-_40px)] md:w-4/5 max-w-7xl mx-auto rounded-full pl-0 pr-6">
+      <FluidGlass className="my-3 lg:my-6 w-[calc(100%_-_40px)] lg:w-4/5 max-w-7xl mx-auto rounded-full pl-0 pr-6">
         <header className="flex items-center justify-between px-2 px-4 py-3 relative">
           <button
             onClick={() => setAboutOpen(true)}
@@ -29,7 +29,7 @@ export function Navbar() {
               width={35}
               height={35}
             />
-            <span className="hidden md:block">Lumen Collection</span>
+            <span className="hidden lg:block">Lumen Collection</span>
           </button>
 
           <ModeToggle />
