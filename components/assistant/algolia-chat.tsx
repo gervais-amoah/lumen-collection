@@ -90,6 +90,9 @@ export default function AlgoliaChat() {
               messages: {
                 loaderText: "Maya is thinking...", // Fallback text
               },
+              prompt: {
+                textareaPlaceholder: "What are you looking for?",
+              },
             }}
             itemComponent={({ item }) => (
               <ProductCard
@@ -113,6 +116,12 @@ export default function AlgoliaChat() {
                 width={35}
                 height={35}
               />
+            )}
+            promptHeaderComponent={() => (
+              <span className="text-gray-100/40 text-sm opacity-20 pt-1">
+                Note: No streaming, responses load all at once—thanks for your
+                patience!
+              </span>
             )}
             messagesLoaderComponent={() => (
               <ShinyText text="Curating some picks you'll love..." />
