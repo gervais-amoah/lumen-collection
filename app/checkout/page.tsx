@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { useProductStore } from "@/store/useProductStore";
+import { useCartStore } from "@/store/useCartStore";
 import Image from "next/image";
 
 const CheckoutPage = () => {
-  const products = useProductStore((state) => state.products);
+  const clearCart = useCartStore((state) => state.clearCart);
+  const products = useCartStore((state) => state.items);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-900 via-gray-800 to-black pt-32">
@@ -39,10 +40,10 @@ const CheckoutPage = () => {
                       >
                         <div className="flex items-center space-x-4">
                           <Image
-                            src={product.image_url}
+                            src={product.imageUrl}
                             alt={product.name}
-                            width={25}
-                            height={40}
+                            width={30}
+                            height={45}
                             className="w-15 h-20 object-cover rounded-lg"
                             onError={(e) =>
                               (e.currentTarget.src = "/placeholder-image.jpg")
@@ -52,12 +53,6 @@ const CheckoutPage = () => {
                             <h3 className="font-medium text-gray-200">
                               {product.name}
                             </h3>
-                            <p className="text-sm text-gray-500">
-                              {product.size?.[0] &&
-                                `Size: ${product.size[0]} | `}
-                              {product.color?.[0] &&
-                                `Color: ${product.color[0]}`}
-                            </p>
                           </div>
                         </div>
                         <div className="text-right">
@@ -116,7 +111,7 @@ const CheckoutPage = () => {
             </Card>
           </div>
 
-          {/* Payment Form */}
+          {/* Payment Form & Cancel */}
           <div className="space-y-6">
             {/* Card */}
             <Card className="rounded-2xl shadow-sm border ">
@@ -169,6 +164,24 @@ const CheckoutPage = () => {
                   <Button className="w-full py-6 rounded-xl">
                     Pay $
                     {products.reduce((sum, p) => sum + p.price, 0).toFixed(2)}
+                  </Button>
+                </div>
+
+                <Separator className="my-4" />
+
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-500 mb-1">
+                      Empty the cart
+                    </label>
+                  </div>
+
+                  <Button
+                    variant={"secondary"}
+                    className="w-full py-6 rounded-xl"
+                    onClick={clearCart}
+                  >
+                    Clear cart
                   </Button>
                 </div>
               </CardContent>

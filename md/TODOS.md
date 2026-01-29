@@ -2,16 +2,15 @@
 
 - [ ] Use Algolia's chat widget in assistant mode
   - [ ] Hide arrows where card result
-  - [ ] Hide before/after shadow style
-  - [ ] When "clear" hit, a weird blur overlay appears
-  - [ ] Edit card results (marging, remove clustering data)
-  - [ ] Edit card results: price should be badge on image, occasion or vibe should be in footer
-  - [ ] Refine the occasion stuff from prompt, maybe not using as filter but just conversational stuff and retrieving "vibe" from it
   - [ ] Add "addToCart" tool
   - [ ] Add a custom "readCart" tool, refine prompt if needed so agent can read cart for existing items and suggest more "matching/complete" ones; can be done after user added new item to card, for cross-sell timing. For limit rage reasons, keep it 3 items (clothing, accessory, footwear)
   - [ ] Stream responses if possible
-- [ ] Checkout page bug: not finding products from cart
-- [ ] Checkout page feat: size & color selection for relevant products
+  - [x] Hide "clear" button from assistant chatbox
+  - [x] Refine the occasion stuff from prompt, maybe not using as filter but just conversational stuff and retrieving "vibe" from it
+  - [x] Edit card results: price should be badge on image, occasion or vibe should be in footer
+  - [x] Edit card results (marging, remove clustering data)
+  - [x] Hide before/after shadow style
+- [x] Checkout page bug: not finding products from cart
 - [x] Differentiate in the UI ("Maya • Assistant Mode" vs "Maya • Chat")
 
 ---

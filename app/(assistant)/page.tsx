@@ -11,7 +11,6 @@ export default function WelcomePage() {
       {/* Main Chat Panel */}
       <div className="flex pb-6 w-4/5 h-full mx-auto">
         <FluidGlass className="w-full rounded-2xl h-full">
-          {/* <ChatPanel /> */}
           <AlgoliaChat />
         </FluidGlass>
       </div>
