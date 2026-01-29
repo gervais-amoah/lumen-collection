@@ -12,7 +12,7 @@ const CheckoutPage = () => {
   const products = useCartStore((state) => state.items);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-gray-900 via-gray-800 to-black pt-32">
+    <div className="flex flex-1 items-center justify-center bg-linear-to-br from-gray-900 via-gray-800 to-black pt-18 md:pt-28 lg:pt-32">
       <div className="max-w-4xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
