@@ -27,7 +27,9 @@ export default function ClassicLayout({
   return (
     <div className="bg-linear-to-br from-purple-950 to-gray-950 text-gray-100 font-sans pt-22 pb-12 min-h-screen h-full ">
       {/* Main content with padding to avoid header overlap */}
-      <main className={`${inter.variable} w-4/5 max-w-7xl mx-auto `}>
+      <main
+        className={`${inter.variable} w-[calc(100%_-_40px)] lg:w-4/5 max-w-7xl mx-auto `}
+      >
         {children}
       </main>
 
@@ -71,7 +73,7 @@ export default function ClassicLayout({
       </div>
 
       <footer>
-        <div className="w-full py-6 px-48 border-t border-gray-800 text-sm text-gray-500">
+        <div className="w-full py-6 px-6 lg:px-48 py-8 border-t border-gray-800 text-sm text-gray-500">
           &copy; {new Date().getFullYear()} Lumen Collection. All rights
           reserved.
         </div>

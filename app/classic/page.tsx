@@ -57,7 +57,7 @@ export default function ClassicPage() {
   if (error) return <p className="text-red-600">Error: {error}</p>;
 
   return (
-    <div className="p-8">
+    <div className="md:p-8">
       <div id="algolia_chat" className="mx-auto my-6 w-3/5">
         <DropdownSearchExperience
           applicationId={applicationId}
