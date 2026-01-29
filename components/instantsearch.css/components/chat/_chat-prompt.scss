@@ -9,6 +9,7 @@
   width: 100%;
   position: relative;
   padding: 0 var(--ais-spacing) var(--ais-spacing) var(--ais-spacing);
+  border-top: 1px solid oklch(87.168% 0.00944 258.479 / 0.10);
 
   &::before {
     content: '';

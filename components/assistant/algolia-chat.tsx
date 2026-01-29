@@ -46,7 +46,7 @@ export default function AlgoliaChat() {
         [&_.ais-Chat-container]:bg-transparent!
         
         [&_.ais-Chat-toggleButtonWrapper]:hidden!
-        
+      
         [&_.ais-ChatPrompt]:before:content-none! 
         [&_.ais-ChatHeader]:after:content-none!
 
