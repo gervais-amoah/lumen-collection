@@ -13,7 +13,7 @@ export function ProductActions({ product }: ProductActionsProps) {
   const addToCart = useCartStore((state) => state.addItem);
 
   const handleAdd = () => {
-    addToCart(product);
+    addToCart({ ...product, quantity: 1 });
     // Optional: You could add a toast notification here
   };
 
