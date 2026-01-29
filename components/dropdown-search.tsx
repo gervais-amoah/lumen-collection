@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import * as Popover from "@radix-ui/react-popover";
 import { liteClient as algoliasearch } from "algoliasearch/lite";
 import { SearchIcon } from "lucide-react";

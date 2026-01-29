@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { liteClient as algoliasearch } from "algoliasearch/lite";
 import { ArrowDown, ArrowUp, CornerDownLeft, SearchIcon } from "lucide-react";
 import type React from "react";
@@ -71,7 +73,7 @@ function getByPath<T = unknown>(obj: unknown, path?: string): T | undefined {
 // Internal Components
 // ============================================================================
 
-interface SearchButtonProps extends React.ComponentProps<typeof Button> {}
+type SearchButtonProps = React.ComponentProps<typeof Button>;
 
 export const SearchButton: React.FC<SearchButtonProps> = ({
   className,

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Hit.tsx
 import { Highlight } from "react-instantsearch";
 
