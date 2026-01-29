@@ -6,7 +6,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useCartStore } from "@/store/useCartStore";
 import { Product } from "@/types/product";
-import { Check, ShoppingCart } from "lucide-react";
+import { Check, CirclePlus } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -46,7 +46,7 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
         className={cn(
           "group overflow-hidden transition-all hover:shadow-lg relative gap-0 p-0",
           "animate-in fade-in slide-in-from-bottom-4",
-          "duration-500 fill-mode-both"
+          "duration-500 fill-mode-both mr-2",
         )}
         style={{ animationDelay: `${index * 100}ms` }}
       >
@@ -65,22 +65,15 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
             </div>
           )}
 
-          {/* Style Tags */}
-          {product.style && product.style.length > 0 && (
-            <div className="absolute left-3 top-3 flex flex-wrap gap-1 z-10">
-              {product.style.slice(0, 2).map((style) => (
-                <Badge key={style} variant="secondary">
-                  {style}
-                </Badge>
-              ))}
-            </div>
-          )}
+          <div className="absolute right-3 top-3 flex flex-wrap gap-1 z-10">
+            <Badge variant="secondary">${product.price}</Badge>
+          </div>
         </div>
 
         {/* Content Section */}
         <CardContent className="p-4">
           {/* Product Info */}
-          <div className="flex justify-between gap-4 mb-3">
+          <div className="flex flex-col justify-between gap-4 mb-3">
             <div className="space-y-1 flex-1">
               <h3 className="font-semibold leading-tight line-clamp-2 text-gray-300">
                 {product.name}
@@ -90,41 +83,13 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
               </p>
             </div>
 
-            <span className="text-2xl font-bold text-gray-300 whitespace-nowrap">
-              ${product.price}
-            </span>
-          </div>
-
-          {/* Sizes and Colors */}
-          <div className="flex justify-between items-center gap-3">
-            {product.color && product.color.length > 0 && (
-              <div className="flex items-center gap-1">
-                <div className="flex -space-x-1">
-                  {product.color.slice(0, 3).map((color, i) => (
-                    <div
-                      key={i}
-                      className="h-4 w-4 rounded-full border-2 border-white shadow-sm"
-                      style={{ backgroundColor: color.toLowerCase() }}
-                      title={color}
-                    />
-                  ))}
-                </div>
-                {product.color.length > 3 && (
-                  <span className="text-xs text-gray-400">
-                    +{product.color.length - 3}
-                  </span>
-                )}
-              </div>
-            )}
-            {product.size && product.size.length > 0 && (
-              <div className="flex flex-wrap gap-1">
-                {product.size.map((size) => (
-                  <Badge
-                    key={size}
-                    variant="outline"
-                    className="text-xs border-gray-300 "
-                  >
-                    {size}
+            {/* Style Tags */}
+            {product.style && product.style.length > 0 && (
+              <div className="flex flex-wrap gap-1 z-10">
+                {" "}
+                {product.style.slice(0, 2).map((style) => (
+                  <Badge key={style} variant="secondary">
+                    {style}
                   </Badge>
                 ))}
               </div>
@@ -141,8 +106,8 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
               highlighted && !isAdded
                 ? "bg-background hover:bg-muted text-foreground border-2 border-blue-500"
                 : isAdded
-                ? "bg-green-600 hover:bg-green-700 text-white"
-                : "bg-muted hover:bg-muted/70 text-foreground"
+                  ? "bg-green-600 hover:bg-green-700 text-white"
+                  : "bg-muted hover:bg-muted/70 text-foreground",
             )}
             size="sm"
             style={
@@ -158,7 +123,7 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
               </>
             ) : (
               <>
-                <ShoppingCart className="h-4 w-4" />
+                <CirclePlus className="h-4 w-4" />
                 Add to Cart
               </>
             )}

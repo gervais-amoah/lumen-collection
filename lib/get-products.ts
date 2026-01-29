@@ -1,9 +1,5 @@
-// /lib/products.ts
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!; // or service role key if needed
-const supabase = createClient(supabaseUrl, supabaseKey);
+// /lib/get-products
+import { supabase } from "./supabase";
 
 export async function fetchProducts(filters: {
   category?: string;
@@ -19,6 +15,17 @@ export async function fetchProducts(filters: {
   if (filters.limit) query = query.limit(filters.limit);
 
   const { data, error } = await query;
+
+  if (error) throw new Error(error.message);
+  return data;
+}
+
+export async function fetchProductDetails(productId: string) {
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .eq("id", productId)
+    .single();
 
   if (error) throw new Error(error.message);
   return data;

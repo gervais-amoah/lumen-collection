@@ -1,6 +1,8 @@
 "use client";
 
 import ShinyText from "@/components/animation/shiny-text";
+import DropdownSearchExperience from "@/components/dropdown-search";
+import { ALGOLIA_CONFIG } from "@/lib/algolia";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -36,13 +38,13 @@ export default function ClassicPage() {
 
   if (loading)
     return (
-      <div className="absolute top-0 left-0 ring-0 bottom-0 w-full -z-10 min-h-screen flex justify-center items-center gap-2.5 bg-[#161616]">
+      <div className="w-full min-h-screen flex justify-center items-center gap-4">
         <Image
           src="/images/lc-logo-md.jpeg"
           alt="Classic Collection Hero"
-          width={224}
-          height={224}
-          className="w-56 h-56 object-cover"
+          width={10}
+          height={10}
+          className="w-56 h-56 object-cover rounded-full border-4 border-gray-800 shadow-2xl shadow-gray-900/50"
         />
 
         <ShinyText text="Loading products..." speed={4} className="text-2xl" />
@@ -51,45 +53,48 @@ export default function ClassicPage() {
   if (error) return <p className="text-red-600">Error: {error}</p>;
 
   return (
-    <div className="pt-[50dvh] min-h-screen">
-      {/* HERO IMAGE HERE */}
-      <div className="absolute top-0 left-0 w-full h-[50dvh] -z-10">
-        <Image
-          src="/images/lc-logo-lg.jpeg"
-          alt="Classic Collection Hero"
-          width={1200}
-          height={400}
-          className="w-full h-full object-cover mb-8 object-left"
+    <div className="md:p-8">
+      <div id="algolia_chat" className="mx-auto my-6 w-3/5">
+        <DropdownSearchExperience
+          applicationId={ALGOLIA_CONFIG.appId}
+          apiKey={ALGOLIA_CONFIG.apiKey}
+          indexName={ALGOLIA_CONFIG.indexName}
+          attributes={{
+            primaryText: "name", // the attribute to display in the hits list
+            secondaryText: "description", // the secondary attribute to display in the hits list
+            tertiaryText: "brand", // the tertiary attribute to display in the hits list
+            url: "url", // the URL of the hit
+            image: "image_url", // the image URL of the hit
+          }}
+          // darkMode={false}
         />
       </div>
-      <div className="p-8">
-        <h1 className="text-2xl font-bold mb-6">Classic Product List</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((p) => (
-            <div key={p.id} className="border p-4 rounded shadow-sm">
-              {p.image_url ? (
-                <Image
-                  src={p.image_url}
-                  alt={p.name}
-                  width={400}
-                  height={300}
-                  className="w-full h-48 object-cover mb-4 rounded"
-                />
-              ) : (
-                <Image
-                  src="/images/placeholder.svg"
-                  alt="Placeholder"
-                  width={400}
-                  height={300}
-                  className="w-full h-48 object-cover mb-4 rounded"
-                />
-              )}
-              <h2 className="font-semibold text-lg">{p.name}</h2>
-              <p className="text-gray-300 mb-2">${p.price.toFixed(2)}</p>
-              <p className="text-gray-400 text-sm">{p.description}</p>
-            </div>
-          ))}
-        </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {products.map((p) => (
+          <div key={p.id} className="border p-4 rounded shadow-sm">
+            {p.image_url ? (
+              <Image
+                src={p.image_url}
+                alt={p.name}
+                width={400}
+                height={300}
+                className="w-full h-48 object-cover mb-4 rounded"
+              />
+            ) : (
+              <Image
+                src="/images/placeholder.svg"
+                alt="Placeholder"
+                width={400}
+                height={300}
+                className="w-full h-48 object-cover mb-4 rounded"
+              />
+            )}
+            <h2 className="font-semibold text-lg">{p.name}</h2>
+            <p className="text-gray-300 mb-2">${p.price.toFixed(2)}</p>
+            <p className="text-gray-400 text-sm">{p.description}</p>
+          </div>
+        ))}
       </div>
     </div>
   );

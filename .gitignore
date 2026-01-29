@@ -42,3 +42,6 @@ next-env.d.ts
 
 # legacy
 /legacy
+
+# md folder
+/md

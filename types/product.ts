@@ -39,3 +39,16 @@ export interface CartItem {
   imageUrl: string;
   quantity: number;
 }
+
+// For Algolia search results
+export interface AlgoliaProduct {
+  // Fields accessed in your JSX:
+  name: string;
+  price: number; // Or string if your data has currency symbols like "$100"
+  image_url?: string; // Optional because you handle the "missing image" case
+  url: string;
+  material?: string; // Optional because you render it conditionally `{item.material && ...}`
+
+  // Algolia System Field (Required):
+  objectID: string;
+}
