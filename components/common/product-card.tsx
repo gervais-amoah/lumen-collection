@@ -6,7 +6,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useCartStore } from "@/store/useCartStore";
 import { Product } from "@/types/product";
-import { Check, ShoppingCart } from "lucide-react";
+import { Check, CirclePlus } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -123,7 +123,7 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
               </>
             ) : (
               <>
-                <ShoppingCart className="h-4 w-4" />
+                <CirclePlus className="h-4 w-4" />
                 Add to Cart
               </>
             )}
