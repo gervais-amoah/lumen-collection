@@ -34,13 +34,13 @@ export default function DemoInfoDialog() {
               About This Demo
             </DialogTitle>
             <DialogDescription className="mt-2 text-base text-white/80">
-              This project is an MVP prototype showcasing AI intent detection,
+              This project is a demo prototype showcasing AI intent detection,
               conversational UX, and semantic product recommendations.
               <br />
               <br />
-              It is <strong>not a full e-commerce application</strong> —
-              checkout, inventory management, and merchant tooling are not
-              implemented.
+              It is <strong>not a full e-commerce application</strong> — the
+              products in the database are very limited; checkout, inventory
+              management, and merchant tooling are not implemented.
             </DialogDescription>
           </DialogHeader>
 

@@ -8,6 +8,7 @@ import { Inter } from "next/font/google";
 import React from "react";
 import { Chat, Configure, InstantSearch } from "react-instantsearch";
 import "../../components/instantsearch.css/components/chat.scss";
+import DemoInfoDialog from "@/components/common/demo-dialog";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -68,11 +69,13 @@ export default function ClassicLayout({
       </div>
 
       <footer>
-        <div className="w-full py-6 px-6 lg:px-48 py-8 border-t border-gray-800 text-sm text-gray-500">
+        <div className="w-full py-6 px-6 lg:px-48 border-t border-gray-800 text-sm text-gray-500">
           &copy; {new Date().getFullYear()} Lumen Collection. All rights
           reserved.
         </div>
       </footer>
+
+      <DemoInfoDialog />
     </div>
   );
 }
