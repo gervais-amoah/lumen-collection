@@ -20,7 +20,7 @@ export default function ClassicLayout({
     <div className="bg-linear-to-br from-purple-950 to-gray-950 text-gray-100 font-sans pt-22 pb-12 min-h-screen h-full ">
       {/* Main content with padding to avoid header overlap */}
       <main
-        className={`${inter.variable} w-[calc(100%_-_40px)] lg:w-4/5 max-w-7xl mx-auto `}
+        className={`${inter.variable} w-[calc(100%-40px)] lg:w-4/5 max-w-7xl mx-auto `}
       >
         {children}
       </main>

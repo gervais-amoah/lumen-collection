@@ -79,8 +79,8 @@ export default async function ProductPage({
           <div className="bg-gray-800/30 rounded-2xl overflow-hidden border-4 border-gray-700/50 aspect-square flex items-center justify-center">
             {product.image_url ? (
               <Image
-                width={150}
-                height={150}
+                width={600}
+                height={600}
                 src={product.image_url}
                 alt={product.name}
                 className="w-full h-full object-cover"
@@ -94,7 +94,7 @@ export default async function ProductPage({
           </div>
 
           {/* Product Info */}
-          <div className="flex flex-col">
+          <div className="flex flex-col justify-center">
             <div>
               <div className="flex flex-wrap items-center gap-3 mb-4">
                 {product.brand && (
@@ -126,25 +126,27 @@ export default async function ProductPage({
                 </span>
               </div>
 
-              {/* Details with Icons */}
-              {renderArrayField(
-                product.size,
-                "Available Sizes",
-                Ruler,
-                "text-blue-400",
-              )}
-              {renderArrayField(
-                product.materials,
-                "Materials",
-                Box,
-                "text-indigo-400",
-              )}
-              {renderArrayField(
-                product.colors,
-                "Colors",
-                Palette,
-                "text-purple-400",
-              )}
+              <div className="mb-2">
+                {/* Details with Icons */}
+                {renderArrayField(
+                  product.size,
+                  "Available Sizes",
+                  Ruler,
+                  "text-blue-400",
+                )}
+                {renderArrayField(
+                  product.materials,
+                  "Materials",
+                  Box,
+                  "text-indigo-400",
+                )}
+                {renderArrayField(
+                  product.colors,
+                  "Colors",
+                  Palette,
+                  "text-purple-400",
+                )}
+              </div>
 
               {/* Add to Cart */}
               <ProductActions product={product} />

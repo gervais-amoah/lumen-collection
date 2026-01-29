@@ -5,13 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
+  { href: "/", label: "Classic Mode", smLabel: "Mode", key: "classic" },
   {
-    href: "/",
+    href: "/assistant",
     label: "Assistant Mode ✨",
     smLabel: "Assistant",
     key: "assistant",
   },
-  { href: "/classic", label: "Classic Mode", smLabel: "Mode", key: "classic" },
 ] as const;
 
 const getLinkClass = (isActive: boolean) =>
@@ -24,7 +24,7 @@ const getLinkClass = (isActive: boolean) =>
 
 export function ModeToggle() {
   const pathname = usePathname();
-  const activeKey = pathname.startsWith("/classic") ? "classic" : "assistant";
+  const activeKey = pathname.startsWith("/assistant") ? "assistant" : "classic";
 
   return (
     <div className="flex gap-0.5 md:gap-2 rounded-full border border-gray/30 p-1 md:p-1.5 absolute left-1/2 transform -translate-x-1/2">
