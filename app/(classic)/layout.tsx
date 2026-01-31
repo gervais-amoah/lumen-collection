@@ -14,7 +14,7 @@ export default function ClassicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-linear-to-br  from-gray-900 via-gray-800 to-black text-gray-100 font-sans pt-22 pb-12 min-h-dvh h-full ">
+    <div className="bg-linear-to-br from-gray-900 via-gray-800 to-black text-gray-100 font-sans pt-22 pb-12 min-h-dvh h-full ">
       {/* Main content with padding to avoid header overlap */}
       <main
         className={`${inter.variable} w-[calc(100%-40px)] lg:w-4/5 max-w-7xl mx-auto `}
