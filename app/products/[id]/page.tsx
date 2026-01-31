@@ -79,8 +79,8 @@ export default async function ProductPage({
           <div className="bg-gray-800/30 rounded-2xl overflow-hidden border-4 border-gray-700/50 aspect-square flex items-center justify-center">
             {product.image_url ? (
               <Image
-                width={600}
-                height={600}
+                width={800}
+                height={800}
                 src={product.image_url}
                 alt={product.name}
                 className="w-full h-full object-cover"

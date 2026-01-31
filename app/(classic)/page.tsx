@@ -115,7 +115,7 @@ export default function ClassicPage() {
     <div className="min-h-screen  text-white">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="container mx-auto px-4 py-12 relative">
+        <div className="container mx-auto md:px-4 py-12 relative">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-linear-to-r from-white to-gray-300">
               Dress With Confident
@@ -129,16 +129,16 @@ export default function ClassicPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="container mx-auto px-4 -mt-8 mb-16 relative">
+      <div className="container mx-auto md:px-4 -mt-8 mb-16 relative">
         <div className="max-w-4xl mx-auto">
           <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 p-6 shadow-2xl">
             <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
               What are you looking for today?
             </h2>
             <DropdownSearchExperience
-              applicationId={ALGOLIA_CONFIG.appId}
-              apiKey={ALGOLIA_CONFIG.apiKey}
-              indexName={ALGOLIA_CONFIG.indexName}
+              applicationId={ALGOLIA_CONFIG.agentAppId}
+              apiKey={ALGOLIA_CONFIG.agentApiKey}
+              indexName={ALGOLIA_CONFIG.agentIndexName}
               attributes={{
                 primaryText: "name",
                 secondaryText: "description",
@@ -157,14 +157,14 @@ export default function ClassicPage() {
       </div>
 
       {/* Category Sections */}
-      <div className="container mx-auto px-4 pb-16 space-y-16">
+      <div className="container mx-auto md:px-4 pb-16 space-y-16">
         {categorySections.map((section) => {
           const categoryProducts = getCategoryProducts(section.category);
 
           return (
             <div key={section.category} className="space-y-6">
               {/* Section Header */}
-              <div className="flex items-center justify-between">
+              <div className="flex items-start md:items-center justify-between">
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <div className="p-2 bg-linear-to-br from-blue-900/60 to-teal-900/60 rounded-lg">
@@ -178,7 +178,7 @@ export default function ClassicPage() {
                   onClick={handleDiscoverClick}
                   className="px-6 py-3 bg-linear-to-r from-blue-900/60 to-teal-900/60 hover:from-blue-900 hover:to-teal-900 rounded-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25 flex items-center gap-2 group"
                 >
-                  Discover More
+                  <span className="hidden md:inline-block">Discover More</span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
@@ -281,7 +281,7 @@ export default function ClassicPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="container mx-auto px-4 pb-16">
+      <div className="container mx-auto md:px-4 pb-16">
         <div className="bg-linear-to-r from-gray-800 to-gray-900 rounded-2xl border border-teal-500/30 p-12 text-center">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-4xl font-bold mb-4">

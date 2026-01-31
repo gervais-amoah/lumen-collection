@@ -1,7 +1,7 @@
 // /lib/get-products
 import { supabase } from "./supabase";
 
-const LEGACY_PRODUCTS_KEY = "products";
+// const LEGACY_PRODUCTS_KEY = "products";
 const AGENT_PRODUCTS_KEY = "agent_assisted_products";
 
 export async function fetchProducts(filters: {
@@ -25,7 +25,7 @@ export async function fetchProducts(filters: {
 
 export async function fetchProductDetails(productId: string) {
   const { data, error } = await supabase
-    .from("products")
+    .from(AGENT_PRODUCTS_KEY)
     .select("*")
     .eq("id", productId)
     .single();
