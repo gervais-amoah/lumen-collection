@@ -1,14 +1,7 @@
 import { Navbar } from "@/components/layout/navbar";
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-
-// Luxury serif for headings / product names
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-playfair",
-});
 
 // Clean sans-serif for body / UI text
 const inter = Inter({
@@ -30,9 +23,9 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable} dark`}>
+    <html lang="en" className={`${inter.variable} dark`}>
       <body className="font-sans antialiased">
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-dvh">
           <div className=" fixed w-full z-10">
             <Navbar />
           </div>

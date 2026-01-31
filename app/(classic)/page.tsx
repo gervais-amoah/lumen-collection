@@ -93,7 +93,7 @@ export default function ClassicPage() {
 
   if (loading)
     return (
-      <div className="w-full min-h-screen flex sm:flex-row flex-col justify-center items-center gap-4">
+      <div className="w-full min-h-dvh flex sm:flex-row flex-col justify-center items-center gap-4">
         <Image
           src="/images/lc-logo-md.jpeg"
           alt="Classic Collection Hero"
@@ -112,7 +112,7 @@ export default function ClassicPage() {
     return <p className="text-red-600 text-center py-8">Error: {error}</p>;
 
   return (
-    <div className="min-h-screen  text-white">
+    <div className="min-h-dvh  text-white">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="container mx-auto md:px-4 py-12 relative">
