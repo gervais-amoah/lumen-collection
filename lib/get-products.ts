@@ -33,3 +33,25 @@ export async function fetchProductDetails(productId: string) {
   if (error) throw new Error(error.message);
   return data;
 }
+
+export async function fetchRelatedProducts(productId: string) {
+  // First get the current product to find its related_items
+  const product = await fetchProductDetails(productId);
+
+  // If no related items, return empty array
+  if (!product.related_items) return [];
+
+  // Extract related item IDs
+  const relatedIds = [
+    ...(product.related_items.shoes || []),
+    ...(product.related_items.accessories || []),
+    ...(product.related_items.similar || []),
+  ].slice(0, 3); // Limit to 3 items
+
+  // Fetch those products
+  const relatedProducts = await Promise.all(
+    relatedIds.map((id) => fetchProductDetails(id)),
+  );
+
+  return relatedProducts.filter((p) => p !== null);
+}
