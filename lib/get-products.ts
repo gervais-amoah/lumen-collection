@@ -1,13 +1,16 @@
 // /lib/get-products
 import { supabase } from "./supabase";
 
+const LEGACY_PRODUCTS_KEY = "products";
+const AGENT_PRODUCTS_KEY = "agent_assisted_products";
+
 export async function fetchProducts(filters: {
   category?: string;
   type?: string;
   color?: string;
   limit?: number;
 }) {
-  let query = supabase.from("products").select("*");
+  let query = supabase.from(AGENT_PRODUCTS_KEY).select("*");
 
   if (filters.category) query = query.eq("category", filters.category);
   if (filters.type) query = query.eq("type", filters.type);
