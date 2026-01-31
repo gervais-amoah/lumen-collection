@@ -8,7 +8,7 @@ const links = [
   { href: "/", label: "Classic Mode", smLabel: "Mode", key: "classic" },
   {
     href: "/assistant",
-    label: "Assistant Mode ✨",
+    label: "✨ Agent Mode",
     smLabel: "Assistant",
     key: "assistant",
   },

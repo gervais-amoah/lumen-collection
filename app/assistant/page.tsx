@@ -1,15 +1,19 @@
 "use client";
 
 import DarkVeil from "@/components/animation/dark-veil";
+import AgentHeader from "@/components/assistant/agent-header";
 import AlgoliaChat from "@/components/assistant/algolia-chat";
 import FluidGlass from "@/components/ui/fluid-glass";
 
 export default function WelcomePage() {
   return (
-    <div className="overflow-hidden h-[calc(100%-90px)] lg:h-[calc(100%-120px)] w-full max-w-[1320px] mx-auto mt-24 lg:mt-30">
+    <div className="overflow-hidden flex flex-1 flex-col w-full mx-auto mt-24 lg:mt-30">
+      {/* Hero Section */}
+      <AgentHeader />
+
       {/* Main Chat Panel */}
-      <div className="flex pb-6 w-[calc(100%-40px)] lg:w-4/5 h-full mx-auto">
-        <FluidGlass className="w-full rounded-2xl h-full">
+      <div className="flex flex-1 pb-6 w-[calc(100%-40px)] lg:w-4/5 max-w-7xl h-full mx-auto">
+        <FluidGlass className="flex flex-1 rounded-2xl">
           <AlgoliaChat />
         </FluidGlass>
       </div>
