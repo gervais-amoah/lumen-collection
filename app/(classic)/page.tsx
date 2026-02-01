@@ -4,17 +4,17 @@
 import ShinyText from "@/components/animation/shiny-text";
 import DropdownSearchExperience from "@/components/dropdown-search";
 import { ALGOLIA_CONFIG } from "@/lib/algolia";
-import Image from "next/image";
-import { useEffect, useState } from "react";
 import {
-  Star,
   ChevronRight,
-  Sparkles,
-  ShoppingBag,
-  Tag,
   Shirt,
+  ShoppingBag,
+  Sparkles,
+  Star,
+  Tag,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 interface Product {
   id: string;
@@ -147,11 +147,6 @@ export default function ClassicPage() {
                 image: "image_url",
               }}
             />
-            <p className="text-gray-400 text-sm mt-4 flex items-center gap-2">
-              <ChevronRight className="w-4 h-4" />
-              Try searching for &quot;dinner date&quot;, &quot;weeding
-              dress&quot;, or &quot;leather belt&quot;
-            </p>
           </div>
         </div>
       </div>
