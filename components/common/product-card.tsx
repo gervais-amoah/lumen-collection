@@ -1,38 +1,15 @@
-"use client";
-
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { useCartStore } from "@/store/useCartStore";
 import { Product } from "@/types/product";
-import { Check, CirclePlus } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
 
 interface ProductCardProps {
   product: Product;
-  index: number;
   highlighted?: boolean;
 }
 
-export function ProductCard({ product, index, highlighted }: ProductCardProps) {
-  const [isAdded, setIsAdded] = useState(false);
-  const addItem = useCartStore((state) => state.addItem);
-
-  const handleAddToCart = () => {
-    addItem({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      imageUrl: product.image_url,
-      quantity: 1,
-    });
-
-    setIsAdded(true);
-    setTimeout(() => setIsAdded(false), 2000);
-  };
-
+export function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="relative w-full mx-auto">
       <style>{`
@@ -48,7 +25,7 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
           "animate-in fade-in slide-in-from-bottom-4",
           "duration-500 fill-mode-both mr-2",
         )}
-        style={{ animationDelay: `${index * 100}ms` }}
+        style={{ animationDelay: `100ms` }}
       >
         {/* Image Section */}
         <div className="relative aspect-10/12 overflow-hidden">
@@ -57,7 +34,7 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
               src={product.image_url}
               alt={product.name}
               fill
-              className="object-cover object-bottom transition-transform group-hover:scale-105"
+              className="object-cover object-bottom transition-all group-hover:scale-105"
             />
           ) : (
             <div className="flex h-full items-center justify-center bg-gray-200">
@@ -73,7 +50,7 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
         {/* Content Section */}
         <CardContent className="p-4">
           {/* Product Info */}
-          <div className="flex flex-col justify-between gap-4 mb-3">
+          <div className="flex flex-col justify-between gap-4">
             <div className="space-y-1 flex-1">
               <h3 className="font-semibold leading-tight line-clamp-2 text-gray-300">
                 {product.name}
@@ -97,37 +74,12 @@ export function ProductCard({ product, index, highlighted }: ProductCardProps) {
           </div>
         </CardContent>
 
+        <div className="border-t border-gray-50/10 mb-2" />
+
         <CardFooter className="p-4 pt-0">
-          <Button
-            onClick={handleAddToCart}
-            disabled={isAdded}
-            className={cn(
-              "w-full gap-2 font-semibold transition-all",
-              highlighted && !isAdded
-                ? "bg-background hover:bg-muted text-foreground border-2 border-blue-500"
-                : isAdded
-                  ? "bg-green-600 hover:bg-green-700 text-white"
-                  : "bg-muted hover:bg-muted/70 text-foreground",
-            )}
-            size="sm"
-            style={
-              highlighted && !isAdded
-                ? { animation: "borderPulse 2s ease-in-out infinite" }
-                : undefined
-            }
-          >
-            {isAdded ? (
-              <>
-                <Check className="h-4 w-4" />
-                Added to Cart
-              </>
-            ) : (
-              <>
-                <CirclePlus className="h-4 w-4" />
-                Add to Cart
-              </>
-            )}
-          </Button>
+          <p className="text-sm leading-tight line-clamp-3 text-gray-400">
+            {product.description}
+          </p>
         </CardFooter>
       </Card>
     </div>

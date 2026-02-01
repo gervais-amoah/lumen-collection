@@ -1,4 +1,8 @@
+"use client";
+
 import { ALGOLIA_CONFIG, searchClient } from "@/lib/algolia";
+import { fetchProductDetails } from "@/lib/get-products";
+import { useCartStore } from "@/store/useCartStore";
 import { Product } from "@/types/product";
 import Image from "next/image";
 import { Chat, Configure, InstantSearch } from "react-instantsearch";
@@ -6,7 +10,37 @@ import ShinyText from "../animation/shiny-text";
 import { ProductCard } from "../common/product-card";
 import "../instantsearch.css/components/chat.scss";
 
+interface ToolMessageInput {
+  product_id: string;
+  quantity: number;
+}
+
+function isToolMessageInput(obj: unknown): obj is ToolMessageInput {
+  return (
+    typeof obj === "object" &&
+    obj !== null &&
+    "product_id" in obj &&
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    typeof (obj as any).product_id === "string"
+  );
+}
+
 export default function AlgoliaChat() {
+  const addItem = useCartStore((state) => state.addItem);
+
+  const handleAddToCart = async (objectID: string) => {
+    // get the product by id
+    const product = await fetchProductDetails(objectID);
+
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image_url: product.image_url,
+      quantity: 1,
+    });
+  };
+
   return (
     /* We are using the [&_*] selector which targets EVERY child element 
        inside this div to reset any restrictive Algolia defaults.
@@ -91,10 +125,7 @@ export default function AlgoliaChat() {
               },
             }}
             itemComponent={({ item }) => (
-              <ProductCard
-                product={item as unknown as Product}
-                index={Number()}
-              />
+              <ProductCard product={item as unknown as Product} />
             )}
             classNames={{
               header: {
@@ -122,6 +153,36 @@ export default function AlgoliaChat() {
             messagesLoaderComponent={() => (
               <ShinyText text="Curating some picks you'll love..." />
             )}
+            tools={{
+              addToCart: {
+                layoutComponent: ({ message }) => {
+                  if (!isToolMessageInput(message.input)) {
+                    return <div>Invalid input</div>;
+                  }
+                  return (
+                    <div className="italic text-gray-100/50">
+                      <p>Reserving your pick...</p>
+                    </div>
+                  );
+                },
+                onToolCall: async ({ addToolResult, input }) => {
+                  console.log("INPUUT", input);
+
+                  if (!isToolMessageInput(input)) {
+                    return <div>Invalid input</div>;
+                  }
+
+                  await handleAddToCart(input.product_id);
+
+                  addToolResult({
+                    output: {
+                      text: `Successfully added ${input.product_id} to cart.`,
+                      done: true,
+                    },
+                  });
+                },
+              },
+            }}
           />
         </div>
       </InstantSearch>

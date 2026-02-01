@@ -195,7 +195,10 @@ export default function ClassicPage() {
                       )}
 
                       {/* Product Image */}
-                      <div className="relative h-64 overflow-hidden bg-linear-to-br from-gray-800 to-gray-900">
+                      <Link
+                        href={`/products/${product.id}`}
+                        className="block relative h-64 overflow-hidden bg-linear-to-br from-gray-800 to-gray-900"
+                      >
                         {product.image_url ? (
                           <Image
                             src={product.image_url}
@@ -213,7 +216,7 @@ export default function ClassicPage() {
                         )}
                         {/* Overlay Gradient */}
                         <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-transparent to-transparent opacity-60" />
-                      </div>
+                      </Link>
 
                       {/* Product Info */}
                       <div className="p-6">
