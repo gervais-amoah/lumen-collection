@@ -1,13 +1,6 @@
+import { CartItem } from "@/types/product";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
-interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  imageUrl: string;
-  quantity: number;
-}
 
 interface CartStore {
   items: CartItem[];
@@ -27,7 +20,7 @@ export const useCartStore = create<CartStore>()(
       addItem: (newItem) => {
         set((state) => {
           const existingItem = state.items.find(
-            (item) => item.id === newItem.id
+            (item) => item.id === newItem.id,
           );
 
           if (existingItem) {
@@ -35,7 +28,7 @@ export const useCartStore = create<CartStore>()(
               items: state.items.map((item) =>
                 item.id === newItem.id
                   ? { ...item, quantity: item.quantity + 1 }
-                  : item
+                  : item,
               ),
             };
           }
@@ -60,7 +53,7 @@ export const useCartStore = create<CartStore>()(
 
         set((state) => ({
           items: state.items.map((item) =>
-            item.id === id ? { ...item, quantity } : item
+            item.id === id ? { ...item, quantity } : item,
           ),
         }));
       },
@@ -76,12 +69,12 @@ export const useCartStore = create<CartStore>()(
       getTotalPrice: () => {
         return get().items.reduce(
           (total, item) => total + item.price * item.quantity,
-          0
+          0,
         );
       },
     }),
     {
       name: "cart-storage",
-    }
-  )
+    },
+  ),
 );
