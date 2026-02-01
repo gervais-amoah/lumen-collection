@@ -1,6 +1,6 @@
 // app/classic/product/[id]/page.tsx
 import { ProductActions } from "@/components/product-details/ProductActions";
-import { fetchProductDetails, fetchRelatedProducts } from "@/lib/get-products"; // You'll need to create this
+import { fetchProductDetails, fetchRelatedProducts } from "@/lib/get-products";
 import {
   Box,
   ChevronRight,
