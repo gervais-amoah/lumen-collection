@@ -17,6 +17,33 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
+
+// Fetch product data (this can be server-side)
+async function getProduct(id: string) {
+  const res = await fetchProductDetails(id);
+  return res;
+}
+
+// Generate metadata dynamically
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const product = await getProduct(params.id);
+
+  return {
+    title: `${product.name} | Lumen Collection`,
+    description: product.description,
+    // Optional: Add Open Graph tags for social sharing
+    openGraph: {
+      title: product.name,
+      description: product.description,
+      images: [product.imageUrl],
+    },
+  };
+}
 
 export default async function ProductPage({
   params,
@@ -70,21 +97,15 @@ export default async function ProductPage({
         <nav className="mb-8">
           <ol className="flex items-center flex-wrap gap-1 text-sm text-gray-500">
             <li className="flex items-center gap-1">
-              <Link
-                href="/classic"
-                className="hover:text-white transition-colors"
-              >
-                Classic
+              <Link href="/" className="hover:text-white transition-colors">
+                Lumen
               </Link>
               <ChevronRight className="w-3 h-3" />
             </li>
             <li className="flex items-center gap-1">
-              <Link
-                href={`/classic?category=${product.category}`}
-                className="hover:text-white transition-colors"
-              >
+              <span className="hover:text-white transition-colors">
                 {product.category || "Products"}
-              </Link>
+              </span>
               <ChevronRight className="w-3 h-3" />
             </li>
             <li className="font-medium text-white max-w-xs md:max-w-md truncate">
@@ -252,7 +273,7 @@ export default async function ProductPage({
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h2 className="text-2xl font-bold flex items-center gap-3">
-                  Complete The Look 😎
+                  Customers Also Bought
                 </h2>
                 <p className="text-gray-400 mt-2">
                   Frequently bought together with this item

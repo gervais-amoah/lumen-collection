@@ -40,10 +40,10 @@ const CheckoutPage = () => {
                       >
                         <div className="flex items-center space-x-4">
                           <Image
-                            src={product.imageUrl}
+                            src={product.image_url}
                             alt={product.name}
-                            width={30}
-                            height={45}
+                            width={70}
+                            height={90}
                             className="w-15 h-20 object-cover rounded-lg"
                             onError={(e) =>
                               (e.currentTarget.src = "/placeholder-image.jpg")
@@ -53,6 +53,7 @@ const CheckoutPage = () => {
                             <h3 className="font-medium text-gray-200">
                               {product.name}
                             </h3>
+                            <p>Qty: {product.quantity}</p>
                           </div>
                         </div>
                         <div className="text-right">
